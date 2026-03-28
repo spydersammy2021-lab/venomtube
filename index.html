@@ -42,3 +42,107 @@
 
         .thumb-container { position: relative; width: 100%; height: 180px; overflow: hidden; }
         .thumb-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .card:hover .thumb-img { transform: scale(1.1); filter: brightness(1.2); }
+
+        .play-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 0, 0, 0.2); opacity: 0; display: flex; align-items: center; justify-content: center; transition: 0.3s; font-size: 40px; }
+        .card:hover .play-overlay { opacity: 1; }
+
+        .card-info { padding: 20px; display: flex; gap: 15px; }
+        .chan-avatar { width: 45px; height: 45px; background: linear-gradient(45deg, #444, #111); border: 2px solid var(--main-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+        
+        .video-title { font-weight: 700; font-size: 17px; margin: 0 0 8px 0; line-height: 1.4; color: #eee; }
+        .video-meta { color: #777; font-size: 14px; }
+
+        /* Przycisk subskrypcji */
+        #sub-btn { background: var(--main-red); color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 900; cursor: pointer; transition: 0.4s; box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4); }
+        #sub-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--main-red); letter-spacing: 1px; }
+
+        /* Okno odtwarzacza */
+        #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; flex-direction: column; }
+        #modal-content { width: 90%; max-width: 1000px; aspect-ratio: 16/9; border: 2px solid var(--main-red); box-shadow: 0 0 50px rgba(255, 0, 0, 0.5); }
+        .close-m { color: white; font-size: 20px; cursor: pointer; margin-bottom: 15px; background: #222; padding: 10px 20px; border-radius: 10px; border: 1px solid #444; }
+        .close-m:hover { background: var(--main-red); }
+    </style>
+</head>
+<body>
+
+    <div class="top-line"></div>
+
+    <header>
+        <div class="logo">🐍 VENOM TUBE</div>
+    </header>
+
+    <nav>
+        <div class="nav-link active">🏠 Główna</div>
+        <div class="nav-link">🎬 Moje Filmy</div>
+        <div class="nav-link">🔥 Trendy</div>
+        <div class="nav-link">🏆 Ranking</div>
+        <hr style="border: 0.5px solid #222; margin: 20px 0;">
+        <button id="sub-btn" onclick="subscribe()">ZOSAW SUBA</button>
+    </nav>
+
+    <main>
+        <div class="stats-box">
+            <div class="stat-item"><span id="v-count">20</span><small>Wyświetlenia</small></div>
+            <div class="stat-item"><span>00Venom</span><small>Właściciel</small></div>
+            <div class="stat-item"><span>INFINITY</span><small>Subskrypcje</small></div>
+        </div>
+
+        <div class="video-grid">
+            
+            <div class="card" onclick="openP('https://www.youtube.com/embed/5VoQrhNo_s0?autoplay=1')">
+                <div class="thumb-container">
+                    <img src="https://i.ytimg.com/vi/5VoQrhNo_s0/maxresdefault.jpg" class="thumb-img">
+                    <div class="play-overlay">▶️</div>
+                </div>
+                <div class="card-info">
+                    <div class="chan-avatar">V</div>
+                    <div>
+                        <p class="video-title">Poradnik na latanie bez cheatów w Rivals 🔥</p>
+                        <p class="video-meta">00Venom Oficial<br>Infinity wyświetleń • 1 godz. temu</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="thumb-container" style="background: #1a1a1a; display: flex; align-items: center; justify-content: center;">🎞️</div>
+                <div class="card-info">
+                    <div class="chan-avatar" style="border-color: #333;">?</div>
+                    <div><p class="video-title">WKRÓTCE NOWY HIT...</p><p class="video-meta">Już niebawem!</p></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="modal">
+        <div class="close-m" onclick="closeP()">ZAMKNIJ ODTWARZACZ [X]</div>
+        <div id="modal-content">
+            <iframe id="video-frame" width="100%" height="100%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openP(url) {
+            document.getElementById('video-frame').src = url;
+            document.getElementById('modal').style.display = 'flex';
+            let v = document.getElementById('v-count');
+            v.innerText = parseInt(v.innerText) + 1;
+        }
+
+        function closeP() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('video-frame').src = '';
+        }
+
+        function subscribe() {
+            const btn = document.getElementById('sub-btn');
+            btn.innerHTML = "JESTEŚ VENOMEM! 🔥";
+            btn.style.background = "#00ff00";
+            btn.style.color = "black";
+            btn.style.boxShadow = "0 0 30px #00ff00";
+            alert("DOŁĄCZYŁEŚ DO IMPERIUM 00VENOMA!");
+        }
+    </script>
+</body>
+</html>
