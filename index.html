@@ -22,4 +22,57 @@
         .info p { color: #888; font-size: 13px; margin: 5px 0 0 0; }
         /* Odtwarzacz FIX */
         #player-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-        .p-container { width: 80%; max-width: 800px; aspect-ratio: 16
+        .p-container { width: 80%; max-width: 800px; aspect-ratio: 16/9; border: 2px solid var(--v-blue); background: #000; }
+        .close-p { background: red; color: white; border: none; padding: 10px 20px; margin-bottom: 10px; cursor: pointer; font-weight: bold; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-size: 20px; font-weight: 900;">VENOM <span style="color:var(--v-blue)">TUBE</span></div>
+</header>
+
+<nav>
+    <p style="color:var(--v-blue)">🏠 Główna</p>
+    <p>🎬 Moje filmy</p>
+    <p>🏆 Skibidi Panel</p>
+</nav>
+
+<main>
+    <div class="stats">
+        <div class="s-box"><h2>107 705</h2><p>WYŚWIETLENIA</p></div>
+        <div class="s-box"><h2>394</h2><p>SUBSKRYBCJE</p></div>
+    </div>
+
+    <div class="video-card" onclick="playVid()">
+        <div class="thumb">
+            <img src="https://i.ytimg.com/vi/5VoQrhNo_s0/maxresdefault.jpg">
+        </div>
+        <div class="info">
+            <h3>Poradnik na latanie w Rivals 🔥</h3>
+            <p>SkibidiZiom_rblx<br>23 wyświetlenia • 2h temu</p>
+        </div>
+    </div>
+</main>
+
+<div id="player-overlay">
+    <button class="close-p" onclick="stopVid()">ZAMKNIJ FILM [X]</button>
+    <div class="p-container">
+        <iframe id="main-ifr" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+    function playVid() {
+        // Najbezpieczniejszy link do embedowania
+        document.getElementById('main-ifr').src = "https://www.youtube.com/embed/5VoQrhNo_s0?autoplay=1";
+        document.getElementById('player-overlay').style.display = "flex";
+    }
+    function stopVid() {
+        document.getElementById('player-overlay').style.display = "none";
+        document.getElementById('main-ifr').src = "";
+    }
+</script>
+
+</body>
+</html>
