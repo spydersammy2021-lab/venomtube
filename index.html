@@ -3,101 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐍 SKIBIDIZIOM | TITAN RED OFFICIAL</title>
+    <title>SKIBIDIZIOM | TITAN RED OFFICIAL</title>
     <style>
-        :root { --v-red: #ff0000; --v-bg: #050505; --v-card: #111111; }
-        body { background-color: var(--v-bg) !important; color: white; font-family: 'Impact', sans-serif; margin: 0; overflow-x: hidden; }
-
-        header { background: #000; height: 90px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; border-bottom: 4px solid var(--v-red); box-shadow: 0 0 30px rgba(255, 0, 0, 0.5); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 32px; font-weight: 900; color: var(--v-red); letter-spacing: 2px; }
-
-        .layout { display: flex; }
-        nav { width: 260px; background: #000; min-height: 100vh; padding: 40px 20px; border-right: 2px solid #111; }
-        .menu-btn { padding: 15px; margin-bottom: 15px; background: #080808; border: 1px solid #222; border-radius: 5px; cursor: pointer; transition: 0.3s; text-align: center; font-weight: bold; color: #555; }
-        .menu-btn:hover { background: var(--v-red); color: white; transform: skewX(-10deg); }
-
-        main { flex: 1; padding: 40px; }
-
-        .profile-hero { background: linear-gradient(45deg, #111, #000); padding: 50px; border-radius: 0 50px 0 50px; border: 2px solid var(--v-red); display: flex; align-items: center; gap: 40px; margin-bottom: 50px; }
+        :root { --v-red: #ff0000; --v-bg: #050505; --v-card: #111; }
         
-        /* LINIA 41: TU JEST TWOJA IKONKA */
-        .my-icon { width: 140px; height: 140px; border-radius: 20px; border: 4px solid var(--v-red); box-shadow: 0 0 40px var(--v-red); object-fit: cover; }
+        body { 
+            background-color: var(--v-bg); 
+            color: white; 
+            font-family: 'Segoe UI', 'Impact', sans-serif; 
+            margin: 0; 
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+        }
 
-        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 60px; }
-        .stat-card { background: #000; padding: 30px; border-left: 10px solid var(--v-red); }
-        .stat-card h2 { font-size: 50px; margin: 0; color: white; }
-        .stat-card p { color: var(--v-red); margin: 5px 0 0 0; font-size: 14px; letter-spacing: 3px; }
+        header { 
+            background: #000; 
+            height: 80px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 40px; 
+            border-bottom: 4px solid var(--v-red); 
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-        .v-item { background: var(--v-card); border-radius: 10px; overflow: hidden; border-bottom: 5px solid #222; cursor: pointer; transition: 0.3s; width: 400px; }
-        .v-item:hover { border-bottom-color: var(--v-red); transform: translateY(-10px); }
-        .v-thumb { width: 100%; aspect-ratio: 16/9; background: #222; }
-        .v-thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .v-desc { padding: 25px; }
+        .layout { 
+            display: flex; 
+            min-height: calc(100vh - 84px);
+            width: 100%;
+        }
 
-        #player-box { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 5000; align-items: center; justify-content: center; }
-        .iframe-wrap { width: 85%; max-width: 1100px; aspect-ratio: 16/9; border: 5px solid var(--v-red); position: relative; }
-        .close-vid { position: absolute; top: -70px; right: 0; background: var(--v-red); color: white; border: none; padding: 15px 40px; font-weight: 900; cursor: pointer; }
-    </style>
-</head>
-<body>
+        nav { 
+            width: 260px; 
+            background: #000; 
+            padding: 30px 20px;
+            border-right: 1px solid #222;
+            flex-shrink: 0;
+        }
 
-<div class="app-container">
-    <header>
-        <div class="logo">VENOM TUBE</div>
-        <div style="background: var(--v-red); padding: 5px 20px; font-weight: 900; color: black;">OFFICIAL</div>
-    </header>
-
-    <div class="layout">
-        <nav>
-            <div class="menu-btn" onmouseenter="beep()">🏠 GŁÓWNA</div>
-            <div class="menu-btn" onmouseenter="beep()">🎬 FILMY</div>
-            <div class="menu-btn" onmouseenter="beep()" style="color: var(--v-red)">🛡️ PANEL</div>
-        </nav>
-
-        <main>
-            <div class="profile-hero">
-                <img src="channels4_profile.jpg" class="my-icon" alt="Profile">
-                <div>
-                    <h1 style="font-size: 50px; margin: 0;">SkibidiZiom_rblx</h1>
-                    <p style="color: var(--v-red); font-weight: bold;">TOP 1 RIVALS</p>
-                </div>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-card"><h2>107 705</h2><p>WYŚWIETLENIA</p></div>
-                <div class="stat-card"><h2>394</h2><p>SUBY</p></div>
-            </div>
-
-            <div class="v-item" onclick="startVid('5VoQrhNo_s0')" onmouseenter="beep()">
-                <div class="v-thumb"><img src="https://i.ytimg.com/vi/5VoQrhNo_s0/maxresdefault.jpg"></div>
-                <div class="v-desc">
-                    <h3>Poradnik na latanie w Rivals 🔥</h3>
-                    <p style="color: #555;">23 wyświetlenia • 2026</p>
-                </div>
-            </div>
-        </main>
-    </div>
-</div>
-
-<div id="player-box">
-    <div class="iframe-wrap">
-        <button class="close-vid" onclick="stopVid()">ZAMKNIJ [X]</button>
-        <iframe id="vid-frame" width="100%" height="100%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-</div>
-
-<script>
-    const snd = new Audio('https://www.soundjay.com/buttons/sounds/button-37a.mp3');
-    function beep() { snd.volume = 0.1; snd.play(); }
-    function startVid(id) {
-        document.getElementById('vid-frame').src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
-        document.getElementById('player-box').style.display = "flex";
-    }
-    function stopVid() {
-        document.getElementById('player-box').style.display = "none";
-        document.getElementById('vid-frame').src = "";
-    }
-</script>
-
-</body>
-</html>
+        .menu-item { 
+            padding: 15px; 
+            margin-bottom: 10px;
