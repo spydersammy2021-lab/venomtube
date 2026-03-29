@@ -18,6 +18,7 @@
             --v-red: #ff0000;
             --v-red-glow: #ff4d4d;
             --v-twitch: #9146ff;
+            --v-game: #00ff41; /* Nowy kolor dla minigry - neonowa zieleń */
             --v-black: #050505;
             --v-dark-bg: #000000;
             --v-glass: rgba(255, 255, 255, 0.05);
@@ -34,16 +35,10 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-
-        /* --- ANIMACJA WEJŚCIA DLA CAŁOŚCI --- */
-        body {
             animation: fadeInPage 1.5s ease-out forwards;
         }
-        @keyframes fadeInPage {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+
+        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
 
         /* --- TŁO --- */
         .space-bg {
@@ -54,10 +49,7 @@
             position: absolute; background: #fff; border-radius: 50%;
             opacity: 0.2; animation: float 20s infinite linear;
         }
-        @keyframes float {
-            from { transform: translateY(100vh) scale(0); }
-            to { transform: translateY(-10vh) scale(1); }
-        }
+        @keyframes float { from { transform: translateY(100vh) scale(0); } to { transform: translateY(-10vh) scale(1); } }
 
         /* --- NAGŁÓWEK --- */
         header {
@@ -68,10 +60,7 @@
             z-index: 1000; box-shadow: 0 5px 40px rgba(255, 0, 0, 0.3);
             animation: slideDown 1s ease-out;
         }
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
+        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
 
         .logo-txt {
             font-family: 'Syncopate', sans-serif; font-size: 40px; font-weight: 700;
@@ -90,10 +79,7 @@
             padding: 40px 20px; display: flex; flex-direction: column; gap: 15px;
             animation: slideLeft 1s ease-out;
         }
-        @keyframes slideLeft {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(0); }
-        }
+        @keyframes slideLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
 
         .nav-link {
             padding: 22px 30px; border-radius: 18px;
@@ -107,6 +93,19 @@
             background: var(--v-gradient); color: white;
             border-color: var(--v-red-glow); transform: scale(1.05) translateX(10px);
             box-shadow: 0 15px 35px rgba(255, 0, 0, 0.4);
+        }
+
+        /* --- STYL DLA PRZYCISKU MINIGRA --- */
+        .nav-game {
+            border-left: 4px solid var(--v-game);
+            color: var(--v-game);
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+        .nav-game:hover {
+            background: linear-gradient(135deg, #00ff41 0%, #004d13 100%) !important;
+            color: black !important;
+            border-color: #fff;
+            box-shadow: 0 15px 35px rgba(0, 255, 65, 0.4) !important;
         }
         
         .nav-twitch { border-left: 4px solid var(--v-twitch); color: var(--v-twitch); }
@@ -124,10 +123,7 @@
             box-shadow: 0 40px 100px rgba(0,0,0,0.5); margin-bottom: 60px;
             animation: scaleIn 0.8s ease-out 0.5s both;
         }
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
         .hero-banner::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
@@ -196,6 +192,9 @@
         <aside>
             <div class="nav-link active" onclick="changeTab('home')">🏠 GŁÓWNY PANEL</div>
             <div class="nav-link" onclick="changeTab('archive')">🎬 ARCHIWUM YT</div>
+            
+            <div class="nav-link nav-game" onclick="openMiniGame()">🎮 MINIGRA</div>
+            
             <div class="nav-link nav-twitch" onclick="openTwitch()">💜 TWITCH LIVE</div>
             <div class="nav-link" onclick="changeTab('stats-v')">📈 STATYSTYKI</div>
             <div class="nav-link nav-pint" onclick="openPinterest()">🖼️ TAPETY</div>
@@ -244,7 +243,6 @@
             pContainer.appendChild(p);
         }
 
-        // LICZNIK LIVE (Dla efektu upiększenia)
         let count = 394;
         setInterval(() => {
             if(Math.random() > 0.8) {
@@ -256,9 +254,11 @@
         function changeTab(id) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            // Prosta logika przełączania (jeśli sekcja istnieje)
             if(id === 'home') document.getElementById('home').classList.add('active');
         }
+
+        // NOWOŚĆ: FUNKCJA OTWIERAJĄCA MINIGRĘ
+        function openMiniGame() { window.open("https://spydersammy2021-lab.github.io/Mini-Game/", "_blank"); }
 
         function openTwitch() { window.open("https://www.twitch.tv/niedasievenom", "_blank"); }
         function openRoblox() { window.open("https://www.roblox.com/pl/users/9321595551/profile", "_blank"); closeEgg(); }
