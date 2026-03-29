@@ -85,6 +85,9 @@
         }
         .nav-twitch { border-left: 4px solid var(--v-twitch); color: var(--v-twitch); }
         .nav-twitch:hover { background: var(--v-twitch) !important; color: white !important; }
+        
+        .nav-pint { border-left: 4px solid #e60023; color: #e60023; }
+        .nav-pint:hover { background: #e60023 !important; color: white !important; box-shadow: 0 10px 30px rgba(230, 0, 35, 0.4) !important; }
 
         main { flex: 1; padding: 60px 80px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--v-red) transparent; }
 
@@ -113,15 +116,6 @@
         .hero-text h1 { font-family: 'Orbitron'; font-size: 70px; margin: 0; }
         .hero-text p { color: var(--v-red); font-weight: 900; letter-spacing: 5px; }
 
-        .status-box {
-            position: absolute; top: 20px; left: 20px; z-index: 10;
-            display: flex; align-items: center; gap: 12px;
-            background: rgba(0,0,0,0.7); padding: 12px 25px;
-            border-radius: 50px; border: 1px solid var(--v-glass-border);
-        }
-        .status-dot { width: 12px; height: 12px; border-radius: 50%; background: #444; animation: blink 2s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
         #egg-overlay {
             display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95);
             z-index: 20000; flex-direction: column; align-items: center; justify-content: center;
@@ -130,17 +124,8 @@
         .egg-card { background: #000; padding: 60px; border-radius: 40px; border: 2px solid var(--v-red); box-shadow: 0 0 100px rgba(255,0,0,0.2); }
         .egg-card h2 { font-family: 'Orbitron'; font-size: 40px; color: #fff; margin-bottom: 20px; }
         .egg-btn { background: var(--v-red); color: #fff; padding: 20px 50px; border-radius: 50px; font-weight: 900; border: none; cursor: pointer; font-family: 'Orbitron'; transition: 0.3s; }
-        .egg-btn:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--v-red); }
-
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
-        .card { background: #0d0d0d; border-radius: 35px; overflow: hidden; border: 1px solid #1a1a1a; transition: var(--transition); cursor: pointer; }
-        .card:hover { transform: translateY(-15px); border-color: var(--v-red); }
-        .card-img { width: 100%; height: 240px; background-size: cover; background-position: center; }
-        .card-body { padding: 30px; }
 
         #player-void { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 9999; align-items: center; justify-content: center; }
-        .player-inner { width: 85%; max-width: 1300px; aspect-ratio: 16/9; background: #000; border: 4px solid #fff; border-radius: 20px; position: relative; }
-        .exit-btn { position: absolute; top: -70px; right: 0; background: #fff; color: #000; padding: 12px 40px; border-radius: 50px; font-weight: 900; cursor: pointer; border: none; }
 
         footer { height: 50px; background: #000; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #333; font-weight: 900; letter-spacing: 3px; }
     </style>
@@ -174,6 +159,7 @@
             <div class="nav-link" onclick="changeTab('archive')">🎬 ARCHIWUM YT</div>
             <div class="nav-link nav-twitch" onclick="openTwitch()">💜 TWITCH LIVE</div>
             <div class="nav-link" onclick="changeTab('stats-v')">📈 STATYSTYKI</div>
+            <div class="nav-link nav-pint" onclick="openPinterest()">🖼️ ŁADNE TAPETY KOLOROWE</div>
             <div class="nav-link" style="margin-top:auto; color:red;" onclick="loginAdmin()">⚙️ ADMIN</div>
         </aside>
 
@@ -199,39 +185,7 @@
                     </div>
                 </div>
             </section>
-
-            <section id="archive" class="view">
-                <h2 style="font-family:'Orbitron'; font-size:40px; margin-bottom:40px;">PROJEKTY RIVALS 🎬</h2>
-                <div class="projects-grid">
-                    <div class="card" onclick="playVid('nsm-IiKL778')">
-                        <div class="card-img" style="background-image:url('https://i.ytimg.com/vi/nsm-IiKL778/maxresdefault.jpg')"></div>
-                        <div class="card-body"><h3>POCZĄTEK LEGENDY</h3><p>FILM #1</p></div>
-                    </div>
-                    <div class="card" onclick="playVid('GbunKlpuLhM')">
-                        <div class="card-img" style="background-image:url('https://i.ytimg.com/vi/GbunKlpuLhM/maxresdefault.jpg')"></div>
-                        <div class="card-body"><h3>CHEATS TESTING</h3><p>SYSTEM BREACH</p></div>
-                    </div>
-                    <div class="card" onclick="playVid('5VoQrhNo_s0')">
-                        <div class="card-img" style="background-image:url('https://i.ytimg.com/vi/5VoQrhNo_s0/maxresdefault.jpg')"></div>
-                        <div class="card-body"><h3>MECHANIKA LATANIA</h3><p>PRO TUTORIAL</p></div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="stats-v" class="view">
-                <h2 style="font-family:'Orbitron'; font-size:40px; margin-bottom:30px;">RAPORT 📊</h2>
-                <div style="background:var(--v-glass); padding:50px; border-radius:40px; border:1px solid var(--v-glass-border);">
-                    <p style="font-size:20px; color:#aaa;">Osiągi 2026: +240% wzrostu oglądalności.</p>
-                </div>
-            </section>
         </main>
-    </div>
-
-    <div id="player-void" onclick="closeOutside(event)">
-        <div class="player-inner">
-            <button class="exit-btn" onclick="closeVid()">ZAMKNIJ [X]</button>
-            <iframe id="main-frame" width="100%" height="100%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
     </div>
 
     <footer>00 VENOM TITAN SYSTEM • 2026</footer>
@@ -251,21 +205,19 @@
         function changeTab(id) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            if(event) event.currentTarget.classList.add('active');
+            if(document.getElementById(id)) document.getElementById(id).classList.add('active');
         }
 
         function openTwitch() { window.open("https://www.twitch.tv/niedasievenom", "_blank"); }
         function openRoblox() { window.open("https://www.roblox.com/pl/users/9321595551/profile", "_blank"); closeEgg(); }
+        
+        // ZAKTUALIZOWANY LINK PINTEREST
+        function openPinterest() { 
+            window.open("https://pl.pinterest.com/search/pins/?q=kolorowe%20tapety%20na%20telefon&rs=rs&source_id=rs_MAifgI7N&top_pin_ids=2322237302882826&eq=&etslf=2427", "_blank"); 
+        }
+
         function openEgg() { document.getElementById('egg-overlay').style.display = 'flex'; }
         function closeEgg() { document.getElementById('egg-overlay').style.display = 'none'; }
-
-        function playVid(id) {
-            document.getElementById('main-frame').src = "https://www.youtube.com/embed/" + id + "?autoplay=1&modestbranding=1";
-            document.getElementById('player-void').style.display = 'flex';
-        }
-        function closeVid() { document.getElementById('main-frame').src = ""; document.getElementById('player-void').style.display = 'none'; }
-        function closeOutside(e) { if(e.target.id === "player-void") closeVid(); }
         function triggerLock(e) { e.preventDefault(); document.getElementById('lock-screen').style.display='flex'; return false; }
         function loginAdmin() { if(prompt("HASŁO:") === "skibidimasło") window.location.href="https://studio.youtube.com"; }
     </script>
