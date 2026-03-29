@@ -259,7 +259,11 @@
             const val = input.value.trim();
 
             if(!val) return;
-            if(KEY.includes("AIzaSyCwSlK6vY1gaGMpbYIIYHIHh_8thuanMcg")) { alert("BŁĄD: Brak klucza API w kodzie!"); return; }
+            // To jest poprawne sprawdzenie:
+if (KEY === "" || KEY.length < 10) { 
+    alert("BŁĄD: Nie wkleiłeś klucza!"); 
+    return; 
+}
 
             const uDiv = document.createElement('div');
             uDiv.className = 'bubble user';
