@@ -33,13 +33,13 @@
             background-color: var(--v-black);
             color: #fff;
             font-family: 'Poppins', sans-serif;
-            overflow: hidden; /* Wszystko mieści się w widoku */
+            overflow: hidden;
             height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* --- ANIMOWANE TŁO (SPACE ENGINE V2) --- */
+        /* --- ANIMOWANE TŁO --- */
         .space-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; background: radial-gradient(circle at center, #1a0000 0%, #000 100%);
@@ -53,7 +53,7 @@
             to { transform: translateY(-10vh) scale(1); }
         }
 
-        /* --- NAGŁÓWEK (NEON BLISS) --- */
+        /* --- NAGŁÓWEK --- */
         header {
             height: 110px; background: rgba(0, 0, 0, 0.85);
             border-bottom: 2px solid var(--v-red);
@@ -74,7 +74,7 @@
         /* --- LAYOUT --- */
         .wrapper { display: flex; flex: 1; overflow: hidden; }
 
-        /* --- SIDEBAR (CYBER-MENU) --- */
+        /* --- SIDEBAR --- */
         aside {
             width: 350px; background: rgba(5, 5, 5, 0.9);
             border-right: 1px solid var(--v-glass-border);
@@ -86,13 +86,13 @@
             color: #666; font-weight: 700; font-size: 14px;
             text-transform: uppercase; letter-spacing: 2px;
             transition: var(--transition); display: flex; align-items: center; gap: 15px;
+            cursor: pointer;
         }
         .nav-link:hover, .nav-link.active {
             background: var(--v-gradient); color: white;
             border-color: var(--v-red-glow); transform: scale(1.05) translateX(15px);
             box-shadow: 0 15px 35px rgba(255, 0, 0, 0.4);
         }
-        .nav-link i { font-size: 20px; }
 
         /* --- MAIN SECTION --- */
         main {
@@ -102,7 +102,7 @@
 
         .view { display: none; animation: viewFade 0.8s ease; }
         .view.active { display: block; }
-        @keyframes viewFade { from { opacity: 0; transform: translateY(30px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes viewFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- PROFIL KARTA (EPIC) --- */
         .hero-banner {
@@ -122,15 +122,14 @@
         .pfp-wrap img {
             width: 220px; height: 220px; border-radius: 40px;
             border: 4px solid #fff; box-shadow: 0 0 50px var(--v-red);
-            transition: 0.5s;
+            transition: 0.5s; object-fit: cover;
         }
-        .pfp-wrap:hover img { transform: rotate(5deg) scale(1.1); }
 
         .hero-text { z-index: 1; }
         .hero-text h1 { font-family: 'Orbitron', sans-serif; font-size: 70px; margin: 0; letter-spacing: -2px; }
         .hero-text p { color: var(--v-red); font-weight: 900; font-size: 22px; letter-spacing: 10px; text-transform: uppercase; }
 
-        /* --- GRID PROJEKTÓW (MASTERPIECE) --- */
+        /* --- GRID PROJEKTÓW --- */
         .projects-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 40px;
@@ -138,17 +137,11 @@
         .card {
             background: #0d0d0d; border-radius: 35px; overflow: hidden;
             border: 1px solid #1a1a1a; transition: var(--transition);
-            position: relative;
+            position: relative; cursor: pointer;
         }
-        .card:hover {
-            transform: translateY(-20px); border-color: var(--v-red);
-            box-shadow: 0 30px 70px rgba(255, 0, 0, 0.3);
-        }
-        .card-img {
-            width: 100%; height: 240px; background-size: cover; background-position: center;
-            position: relative; transition: 0.8s;
-        }
-        .card:hover .card-img { transform: scale(1.1); filter: brightness(1.2); }
+        .card:hover { transform: translateY(-20px); border-color: var(--v-red); box-shadow: 0 30px 70px rgba(255, 0, 0, 0.3); }
+        .card-img { width: 100%; height: 240px; background-size: cover; background-position: center; transition: 0.8s; position: relative; }
+        .card:hover .card-img { transform: scale(1.1); }
         .card-body { padding: 30px; }
         .card-body h3 { font-family: 'Orbitron'; font-size: 22px; margin-bottom: 10px; }
         .card-body p { color: #555; font-weight: 800; font-size: 13px; letter-spacing: 2px; }
@@ -161,7 +154,7 @@
         }
         .card:hover .play-icon { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
 
-        /* --- OMNI PLAYER (THE VOID) --- */
+        /* --- OMNI PLAYER --- */
         #player-void {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.98); z-index: 9999; align-items: center; justify-content: center;
@@ -175,31 +168,17 @@
         .exit-btn {
             position: absolute; top: -70px; right: 0; background: #fff; color: #000;
             padding: 12px 40px; border-radius: 50px; font-weight: 900; cursor: pointer;
-            border: none; transition: 0.3s;
+            border: none;
         }
-        .exit-btn:hover { background: var(--v-red); color: #fff; transform: scale(1.1); }
 
-        /* --- STATS BOXES --- */
         .stats-container { display: flex; gap: 30px; margin-top: 40px; }
         .stat-card {
             flex: 1; background: var(--v-glass); padding: 40px; border-radius: 30px;
             border: 1px solid var(--v-glass-border); text-align: center;
-            transition: 0.4s;
         }
-        .stat-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-10px); }
         .stat-card h2 { font-family: 'Orbitron'; font-size: 50px; color: var(--v-red); }
-        .stat-card p { font-weight: 800; color: #444; text-transform: uppercase; }
 
-        /* --- FOOTER --- */
-        footer {
-            height: 50px; background: #000; border-top: 1px solid #111;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 11px; color: #333; font-weight: 900; letter-spacing: 3px;
-        }
-
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: var(--v-red); border-radius: 10px; }
+        footer { height: 50px; background: #000; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #333; font-weight: 900; letter-spacing: 3px; }
     </style>
 </head>
 <body oncontextmenu="return triggerLock(event)">
@@ -208,17 +187,12 @@
 
     <div id="lock-screen" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:red; z-index:100000; flex-direction:column; align-items:center; justify-content:center;">
         <h1 style="font-family:'Orbitron'; font-size:100px;">BLOKADA 🐍</h1>
-        <p style="font-weight:900; font-size:20px;">SYSTEM VENOM V37: CHRONIONY</p>
-        <button onclick="document.getElementById('lock-screen').style.display='none'" style="margin-top:50px; padding:20px 60px; font-weight:900; border-radius:50px; cursor:pointer;">ODBLOKUJ</button>
+        <button onclick="document.getElementById('lock-screen').style.display='none'" style="margin-top:50px; padding:20px 60px; font-weight:900; cursor:pointer;">ODBLOKUJ</button>
     </div>
 
     <header>
-        <div class="logo-box">
-            <div class="logo-txt">00<span>VENOM</span></div>
-        </div>
-        <div style="font-weight:900; color:var(--v-red); border:1px solid red; padding:10px 25px; border-radius:50px; box-shadow:0 0 20px red;">
-            V37: ETERNAL GLORY 🏆
-        </div>
+        <div class="logo-box"><div class="logo-txt">00<span>VENOM</span></div></div>
+        <div style="font-weight:900; color:var(--v-red); border:1px solid red; padding:10px 25px; border-radius:50px; box-shadow:0 0 20px red;">V37: ETERNAL GLORY 🏆</div>
     </header>
 
     <div class="wrapper">
@@ -233,7 +207,7 @@
         <main>
             <section id="home" class="view active">
                 <div class="hero-banner">
-                    <div class="pfp-wrap"><img src="pro.png"></div>
+                    <div class="pfp-wrap"><img src="https://raw.githubusercontent.com/spydersammy2021-lab/venomtube/main/pro.png" alt="00 Venom"></div>
                     <div class="hero-text">
                         <p>Welcome to the empire of</p>
                         <h1>00 Venom</h1>
@@ -251,61 +225,32 @@
             <section id="archive" class="view">
                 <h2 style="font-family:'Orbitron'; font-size:40px; margin-bottom:40px; border-left:8px solid red; padding-left:25px;">PROJEKTY RIVALS 🎬</h2>
                 <div class="projects-grid">
-                    
                     <div class="card" onclick="playVid('nsm-IiKL778')">
-                        <div class="card-img" style="background-image:url('https://i.ytimg.com/vi/nsm-IiKL778/maxresdefault.jpg')">
-                            <div class="play-icon">▶</div>
-                        </div>
-                        <div class="card-body">
-                            <h3>POCZĄTEK LEGENDY 🏆</h3>
-                            <p>MÓJ PIERWSZY FILM Z RIVALS</p>
-                        </div>
+                        <div class="card-img" style="background-image:url('https://i.ytimg.com/vi/nsm-IiKL778/maxresdefault.jpg')"><div class="play-icon">▶</div></div>
+                        <div class="card-body"><h3>POCZĄTEK LEGENDY 🏆</h3><p>MÓJ PIERWSZY FILM Z RIVALS</p></div>
                     </div>
-
                     <div class="card" onclick="playVid('GbunKlpuLhM')">
-                        <div class="card-img" style="background-image:url('https://i.ytimg.com/vi/GbunKlpuLhM/maxresdefault.jpg')">
-                            <div class="play-icon">▶</div>
-                        </div>
-                        <div class="card-body">
-                            <h3>CHEATS IN RIVALS ⚠️</h3>
-                            <p>SYSTEM BREACH & TESTING</p>
-                        </div>
+                        <div class="card-img" style="background-image:url('https://i.ytimg.com/vi/GbunKlpuLhM/maxresdefault.jpg')"><div class="play-icon">▶</div></div>
+                        <div class="card-body"><h3>CHEATS IN RIVALS ⚠️</h3><p>SYSTEM BREACH & TESTING</p></div>
                     </div>
-
                     <div class="card" onclick="playVid('5VoQrhNo_s0')">
-                        <div class="card-img" style="background-image:url('https://i.ytimg.com/vi/5VoQrhNo_s0/maxresdefault.jpg')">
-                            <div class="play-icon">▶</div>
-                        </div>
-                        <div class="card-body">
-                            <h3>MECHANIKA LATANIA 🔥</h3>
-                            <p>PRO TUTORIAL FOR LEGENDS</p>
-                        </div>
+                        <div class="card-img" style="background-image:url('https://i.ytimg.com/vi/5VoQrhNo_s0/maxresdefault.jpg')"><div class="play-icon">▶</div></div>
+                        <div class="card-body"><h3>MECHANIKA LATANIA 🔥</h3><p>PRO TUTORIAL FOR LEGENDS</p></div>
                     </div>
-
                 </div>
             </section>
 
             <section id="stats-v" class="view">
                 <h2 style="font-family:'Orbitron'; font-size:40px; margin-bottom:30px;">RAPORT BOJOWY 📊</h2>
                 <div style="background:var(--v-glass); padding:50px; border-radius:40px; border:1px solid var(--v-glass-border);">
-                    <p style="font-size:20px; color:#aaa; line-height:1.6;">
-                        Twoje statystyki w roku 2026 przebiły wszelkie oczekiwania. 
-                        Średnia oglądalność wzrosła o <span style="color:red; font-weight:900;">240%</span>. 
-                        Jesteś najczęściej wyszukiwanym graczem w kategorii <strong style="color:white;">"Rivals Pro Tips"</strong>.
-                    </p>
+                    <p style="font-size:20px; color:#aaa; line-height:1.6;">Twoje statystyki w roku 2026 przebiły wszelkie oczekiwania. Średnia oglądalność wzrosła o 240%.</p>
                 </div>
             </section>
 
             <section id="about-v" class="view">
                 <h2 style="font-family:'Orbitron'; font-size:40px; margin-bottom:30px;">HISTORIA 🛡️</h2>
-                <div style="display:flex; gap:40px;">
-                    <div style="flex:1; background:var(--v-glass); padding:40px; border-radius:30px;">
-                        <p style="font-size:18px; color:#888;">
-                            00 Venom to nie tylko ksywka, to marka. Od pierwszego filmu do wersji TITAN V37, 
-                            zawsze stawiamy na jakość i dominację. Każdy ruch na mapie Rivals jest przemyślany.
-                        </p>
-                    </div>
-                    <div style="width:300px; height:300px; background:var(--v-red); border-radius:40px; display:flex; align-items:center; justify-content:center; font-size:100px;">👑</div>
+                <div style="background:var(--v-glass); padding:40px; border-radius:30px;">
+                    <p style="font-size:18px; color:#888;">00 Venom to nie tylko ksywka, to marka. Od pierwszego filmu do wersji TITAN V37, zawsze stawiamy na jakość i dominację.</p>
                 </div>
             </section>
         </main>
@@ -313,15 +258,14 @@
 
     <div id="player-void" onclick="closeOutside(event)">
         <div class="player-inner">
-            <button class="exit-btn" onclick="closeVid()">ZAMKNIJ ARCHIWUM [X]</button>
+            <button class="exit-btn" onclick="closeVid()">ZAMKNIJ [X]</button>
             <iframe id="main-frame" width="100%" height="100%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 
-    <footer>00 VENOM TITAN SYSTEM • REIGNING SINCE ORIGINS • 2026</footer>
+    <footer>00 VENOM TITAN SYSTEM • 2026</footer>
 
     <script>
-        // GENERATOR CZĄSTECZEK (TŁO)
         const pContainer = document.getElementById('particles');
         for (let i = 0; i < 100; i++) {
             const p = document.createElement('div');
@@ -329,11 +273,9 @@
             p.style.left = Math.random() * 100 + 'vw';
             p.style.width = p.style.height = Math.random() * 3 + 'px';
             p.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            p.style.animationDelay = Math.random() * 5 + 's';
             pContainer.appendChild(p);
         }
 
-        // NAWIGACJA
         function changeTab(id) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -341,26 +283,17 @@
             event.currentTarget.classList.add('active');
         }
 
-        // ODTWARZACZ (STABILNY)
         function playVid(id) {
-            const f = document.getElementById('main-frame');
-            f.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&modestbranding=1";
+            document.getElementById('main-frame').src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
             document.getElementById('player-void').style.display = 'flex';
         }
         function closeVid() {
             document.getElementById('main-frame').src = "";
             document.getElementById('player-void').style.display = 'none';
         }
-        function closeOutside(e) {
-            if(e.target.id === "player-void") closeVid();
-        }
-
-        // LOCK
+        function closeOutside(e) { if(e.target.id === "player-void") closeVid(); }
         function triggerLock(e) { e.preventDefault(); document.getElementById('lock-screen').style.display='flex'; return false; }
-        
-        function loginAdmin() {
-            if(prompt("HASŁO ADMINA:") === "skibidimasło") window.location.href="https://studio.youtube.com";
-        }
+        function loginAdmin() { if(prompt("HASŁO:") === "skibidimasło") window.location.href="https://studio.youtube.com"; }
     </script>
 </body>
 </html>
