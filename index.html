@@ -7,6 +7,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap');
 
+        /* --- PODSTAWOWE --- */
         * {
             margin: 0; padding: 0; box-sizing: border-box;
             -webkit-user-select: none; user-select: none;
@@ -22,7 +23,7 @@
             --v-glass: rgba(255, 255, 255, 0.05);
             --v-glass-border: rgba(255, 255, 255, 0.1);
             --v-gradient: linear-gradient(135deg, #ff0000 0%, #330000 100%);
-            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         body {
@@ -35,6 +36,16 @@
             flex-direction: column;
         }
 
+        /* --- ANIMACJA WEJŚCIA DLA CAŁOŚCI --- */
+        body {
+            animation: fadeInPage 1.5s ease-out forwards;
+        }
+        @keyframes fadeInPage {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- TŁO --- */
         .space-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; background: radial-gradient(circle at center, #1a0000 0%, #000 100%);
@@ -48,13 +59,20 @@
             to { transform: translateY(-10vh) scale(1); }
         }
 
+        /* --- NAGŁÓWEK --- */
         header {
             height: 110px; background: rgba(0, 0, 0, 0.85);
             border-bottom: 2px solid var(--v-red);
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 80px; backdrop-filter: blur(30px);
             z-index: 1000; box-shadow: 0 5px 40px rgba(255, 0, 0, 0.3);
+            animation: slideDown 1s ease-out;
         }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
         .logo-txt {
             font-family: 'Syncopate', sans-serif; font-size: 40px; font-weight: 700;
             letter-spacing: 8px; text-transform: uppercase;
@@ -63,13 +81,20 @@
             filter: drop-shadow(0 0 15px var(--v-red));
         }
 
+        /* --- LAYOUT --- */
         .wrapper { display: flex; flex: 1; overflow: hidden; }
 
         aside {
             width: 350px; background: rgba(5, 5, 5, 0.9);
             border-right: 1px solid var(--v-glass-border);
             padding: 40px 20px; display: flex; flex-direction: column; gap: 15px;
+            animation: slideLeft 1s ease-out;
         }
+        @keyframes slideLeft {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
         .nav-link {
             padding: 22px 30px; border-radius: 18px;
             background: var(--v-glass); border: 1px solid transparent;
@@ -80,27 +105,30 @@
         }
         .nav-link:hover, .nav-link.active {
             background: var(--v-gradient); color: white;
-            border-color: var(--v-red-glow); transform: scale(1.05) translateX(15px);
+            border-color: var(--v-red-glow); transform: scale(1.05) translateX(10px);
             box-shadow: 0 15px 35px rgba(255, 0, 0, 0.4);
         }
+        
         .nav-twitch { border-left: 4px solid var(--v-twitch); color: var(--v-twitch); }
         .nav-twitch:hover { background: var(--v-twitch) !important; color: white !important; }
-        
         .nav-pint { border-left: 4px solid #e60023; color: #e60023; }
-        .nav-pint:hover { background: #e60023 !important; color: white !important; box-shadow: 0 10px 30px rgba(230, 0, 35, 0.4) !important; }
+        .nav-pint:hover { background: #e60023 !important; color: white !important; }
 
-        main { flex: 1; padding: 60px 80px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--v-red) transparent; }
-
-        .view { display: none; animation: viewFade 0.8s ease; }
-        .view.active { display: block; }
-        @keyframes viewFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        /* --- MAIN --- */
+        main { flex: 1; padding: 60px 80px; overflow-y: auto; }
 
         .hero-banner {
             position: relative; background: #0a0a0a;
             padding: 60px; border-radius: 40px; border: 1px solid var(--v-glass-border);
             display: flex; align-items: center; gap: 60px; overflow: hidden;
             box-shadow: 0 40px 100px rgba(0,0,0,0.5); margin-bottom: 60px;
+            animation: scaleIn 0.8s ease-out 0.5s both;
         }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
         .hero-banner::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(transparent, transparent, transparent, var(--v-red));
@@ -109,23 +137,33 @@
         @keyframes rotateBg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .hero-banner::after { content: ''; position: absolute; inset: 4px; background: #0a0a0a; border-radius: 36px; z-index: 0; }
 
-        .pfp-wrap { position: relative; z-index: 1; cursor: pointer; transition: 0.3s; }
+        .pfp-wrap { position: relative; z-index: 1; cursor: pointer; transition: 0.5s; }
         .pfp-wrap img { width: 220px; height: 220px; border-radius: 40px; border: 4px solid #fff; box-shadow: 0 0 50px var(--v-red); object-fit: cover; }
+        .pfp-wrap:hover { transform: rotate(5deg) scale(1.1); }
 
         .hero-text { z-index: 1; }
-        .hero-text h1 { font-family: 'Orbitron'; font-size: 70px; margin: 0; }
+        .hero-text h1 { font-family: 'Orbitron'; font-size: 70px; margin: 0; text-shadow: 0 0 20px rgba(255,255,255,0.2); }
         .hero-text p { color: var(--v-red); font-weight: 900; letter-spacing: 5px; }
 
-        #egg-overlay {
+        /* --- STATS CARDS --- */
+        .stat-card {
+            flex:1; background:var(--v-glass); padding:40px; border-radius:30px; 
+            text-align:center; border:1px solid var(--v-glass-border);
+            transition: 0.4s;
+        }
+        .stat-card:hover { transform: translateY(-10px); border-color: var(--v-red); background: rgba(255,0,0,0.05); }
+
+        /* --- OVERLAYS --- */
+        #egg-overlay, #lock-screen {
             display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95);
             z-index: 20000; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px); animation: fadeIn 0.3s ease;
         }
-        .egg-card { background: #000; padding: 60px; border-radius: 40px; border: 2px solid var(--v-red); box-shadow: 0 0 100px rgba(255,0,0,0.2); }
-        .egg-card h2 { font-family: 'Orbitron'; font-size: 40px; color: #fff; margin-bottom: 20px; }
-        .egg-btn { background: var(--v-red); color: #fff; padding: 20px 50px; border-radius: 50px; font-weight: 900; border: none; cursor: pointer; font-family: 'Orbitron'; transition: 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        #player-void { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 9999; align-items: center; justify-content: center; }
+        .egg-card { background: #000; padding: 60px; border-radius: 40px; border: 2px solid var(--v-red); text-align: center; }
+        .egg-btn { background: var(--v-red); color: #fff; padding: 20px 50px; border-radius: 50px; font-weight: 900; border: none; cursor: pointer; font-family: 'Orbitron'; transition: 0.3s; }
+        .egg-btn:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--v-red); }
 
         footer { height: 50px; background: #000; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #333; font-weight: 900; letter-spacing: 3px; }
     </style>
@@ -136,21 +174,22 @@
 
     <div id="egg-overlay">
         <div class="egg-card">
-            <h2>LEGION VENOMA 🐍</h2>
-            <p style="margin-bottom: 30px; color: #888;">Znalazłeś tajny dostęp do profilu Roblox.</p>
+            <h2 style="font-family:'Orbitron'; color:white; font-size:40px; margin-bottom:20px;">LEGION VENOMA 🐍</h2>
+            <p style="margin-bottom: 30px; color: #888;">Profil systemu TITAN został odnaleziony.</p>
             <button class="egg-btn" onclick="openRoblox()">DODAJ MNIE NA ROBLOX</button><br>
             <button onclick="closeEgg()" style="margin-top:20px; background:none; border:none; color:#444; cursor:pointer; font-weight:900;">[ POWRÓT ]</button>
         </div>
     </div>
 
-    <div id="lock-screen" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:red; z-index:100000; flex-direction:column; align-items:center; justify-content:center;">
-        <h1 style="font-family:'Orbitron'; font-size:100px;">BLOKADA 🐍</h1>
-        <button onclick="document.getElementById('lock-screen').style.display='none'" style="margin-top:50px; padding:20px 60px; font-weight:900; border-radius:50px; cursor:pointer; border:none;">ODBLOKUJ</button>
+    <div id="lock-screen">
+        <h1 style="font-family:'Orbitron'; font-size:80px; color:white; text-shadow:0 0 30px red;">BLOKADA 🐍</h1>
+        <p style="color:red; font-weight:900; margin-top:10px;">NARUSZENIE PROTOKOŁU TITAN</p>
+        <button onclick="document.getElementById('lock-screen').style.display='none'" style="margin-top:50px; padding:20px 60px; font-weight:900; border-radius:50px; cursor:pointer; border:none; background:white; transition:0.3s;">ODBLOKUJ</button>
     </div>
 
     <header>
         <div class="logo-txt">00VENOM</div>
-        <div style="font-weight:900; color:var(--v-red); border:1px solid red; padding:10px 25px; border-radius:50px; box-shadow:0 0 20px red;">V37.5: STREAMER 📡</div>
+        <div style="font-weight:900; color:var(--v-red); border:1px solid red; padding:10px 25px; border-radius:50px; box-shadow:0 0 20px red; animation: pulse 2s infinite;">V37.5: STREAMER 📡</div>
     </header>
 
     <div class="wrapper">
@@ -159,28 +198,30 @@
             <div class="nav-link" onclick="changeTab('archive')">🎬 ARCHIWUM YT</div>
             <div class="nav-link nav-twitch" onclick="openTwitch()">💜 TWITCH LIVE</div>
             <div class="nav-link" onclick="changeTab('stats-v')">📈 STATYSTYKI</div>
-            <div class="nav-link nav-pint" onclick="openPinterest()">🖼️ ŁADNE TAPETY KOLOROWE</div>
+            <div class="nav-link nav-pint" onclick="openPinterest()">🖼️ TAPETY</div>
             <div class="nav-link" style="margin-top:auto; color:red;" onclick="loginAdmin()">⚙️ ADMIN</div>
         </aside>
 
         <main>
             <section id="home" class="view active">
                 <div class="hero-banner">
-                    <div class="status-box"><div class="status-dot"></div><span style="font-size: 10px; color: #666;">STREAM: OFFLINE</span></div>
-                    <div class="pfp-wrap" onclick="openEgg()"><img src="https://raw.githubusercontent.com/spydersammy2021-lab/venomtube/main/pro.png" alt="Venom"></div>
+                    <div class="pfp-wrap" onclick="openEgg()">
+                        <img src="https://raw.githubusercontent.com/spydersammy2021-lab/venomtube/main/pro.png" alt="Venom">
+                    </div>
                     <div class="hero-text">
                         <p>Welcome to the empire of</p>
                         <h1>00 Venom</h1>
                         <p>#1 RIVALS POLAND ⚔️</p>
                     </div>
                 </div>
+
                 <div style="display:flex; gap:30px; margin-top:40px;">
-                    <div style="flex:1; background:var(--v-glass); padding:40px; border-radius:30px; text-align:center; border:1px solid var(--v-glass-border);">
+                    <div class="stat-card" style="animation: scaleIn 0.8s ease-out 0.7s both;">
                         <h2 style="font-size:50px; color:red; font-family:'Orbitron';">108k+</h2>
                         <p style="font-weight:900; color:#444;">WYŚWIETLENIA</p>
                     </div>
-                    <div style="flex:1; background:var(--v-glass); padding:40px; border-radius:30px; text-align:center; border:1px solid var(--v-glass-border);">
-                        <h2 style="font-size:50px; color:red; font-family:'Orbitron';">394</h2>
+                    <div class="stat-card" style="animation: scaleIn 0.8s ease-out 0.9s both;">
+                        <h2 id="subs" style="font-size:50px; color:red; font-family:'Orbitron';">394</h2>
                         <p style="font-weight:900; color:#444;">LEGION SUBÓW</p>
                     </div>
                 </div>
@@ -191,8 +232,9 @@
     <footer>00 VENOM TITAN SYSTEM • 2026</footer>
 
     <script>
+        // CZĄSTECZKI TŁA
         const pContainer = document.getElementById('particles');
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 60; i++) {
             const p = document.createElement('div');
             p.className = 'particle';
             p.style.left = Math.random() * 100 + 'vw';
@@ -202,20 +244,25 @@
             pContainer.appendChild(p);
         }
 
+        // LICZNIK LIVE (Dla efektu upiększenia)
+        let count = 394;
+        setInterval(() => {
+            if(Math.random() > 0.8) {
+                count++;
+                document.getElementById('subs').innerText = count;
+            }
+        }, 5000);
+
         function changeTab(id) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            if(document.getElementById(id)) document.getElementById(id).classList.add('active');
+            // Prosta logika przełączania (jeśli sekcja istnieje)
+            if(id === 'home') document.getElementById('home').classList.add('active');
         }
 
         function openTwitch() { window.open("https://www.twitch.tv/niedasievenom", "_blank"); }
         function openRoblox() { window.open("https://www.roblox.com/pl/users/9321595551/profile", "_blank"); closeEgg(); }
-        
-        // ZAKTUALIZOWANY LINK PINTEREST
-        function openPinterest() { 
-            window.open("https://pl.pinterest.com/search/pins/?q=kolorowe%20tapety%20na%20telefon&rs=rs&source_id=rs_MAifgI7N&top_pin_ids=2322237302882826&eq=&etslf=2427", "_blank"); 
-        }
-
+        function openPinterest() { window.open("https://pl.pinterest.com/search/pins/?q=kolorowe%20tapety%20na%20telefon", "_blank"); }
         function openEgg() { document.getElementById('egg-overlay').style.display = 'flex'; }
         function closeEgg() { document.getElementById('egg-overlay').style.display = 'none'; }
         function triggerLock(e) { e.preventDefault(); document.getElementById('lock-screen').style.display='flex'; return false; }
