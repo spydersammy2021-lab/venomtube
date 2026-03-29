@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKIBIDIZIOM | ULTIMATE TITAN RED</title>
+    <title>00 VENOM | ULTIMATE TITAN V21</title>
     <style>
         :root { 
             --v-red: #ff0000; 
@@ -17,8 +17,7 @@
             background-color: var(--v-bg); 
             color: white; 
             font-family: 'Segoe UI', Roboto, sans-serif; 
-            margin: 0; 
-            padding: 0;
+            margin: 0; padding: 0;
             overflow-x: hidden;
             width: 100%;
         }
@@ -31,17 +30,11 @@
             justify-content: space-between; 
             padding: 0 50px; 
             border-bottom: 3px solid var(--v-red); 
-            box-shadow: 0 4px 15px var(--v-red-glow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            box-shadow: 0 4px 25px var(--v-red-glow);
+            position: sticky; top: 0; z-index: 1000;
         }
 
-        .layout { 
-            display: flex; 
-            min-height: calc(100vh - 83px);
-            width: 100%;
-        }
+        .layout { display: flex; min-height: calc(100vh - 83px); width: 100%; }
 
         nav { 
             width: 280px; 
@@ -52,158 +45,104 @@
         }
 
         .menu-item { 
-            padding: 16px; 
-            margin-bottom: 12px; 
-            background: #080808; 
-            border: 1px solid #222;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-            font-weight: 600;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            padding: 16px; margin-bottom: 12px; 
+            background: #080808; border: 1px solid #222;
+            border-radius: 12px; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left; font-weight: 600; color: #888;
+            text-transform: uppercase; letter-spacing: 1px;
         }
 
         .menu-item:hover { 
-            background: white; 
-            color: black; 
-            transform: translateX(10px);
-            box-shadow: 0 0 15px rgba(255,255,255,0.3);
+            background: white; color: black; 
+            transform: translateX(12px);
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
             border-color: white;
         }
 
-        /* Specjalny efekt dla przycisku Admina */
         #adminBtn {
-            margin-top: 50px;
-            border-color: var(--v-red);
-            color: var(--v-red);
-            box-shadow: 0 0 5px var(--v-red-glow);
+            margin-top: 50px; border-color: var(--v-red);
+            color: var(--v-red); font-weight: 900;
+            text-shadow: 0 0 5px var(--v-red);
         }
         #adminBtn:hover {
-            background: var(--v-red);
-            color: white;
-            box-shadow: 0 0 20px var(--v-red);
+            background: var(--v-red); color: white;
+            box-shadow: 0 0 30px var(--v-red);
         }
 
         main { 
-            flex-grow: 1; 
-            padding: 50px; 
-            background: linear-gradient(180deg, #080808 0%, #050505 100%);
+            flex-grow: 1; padding: 50px; 
+            background: radial-gradient(circle at top right, #110000 0%, #050505 100%);
         }
 
         .hero { 
-            background: #000; 
-            padding: 60px; 
-            border-radius: 30px; 
-            border: 1px solid #222;
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            margin-bottom: 50px;
-            width: 100%;
-            box-sizing: border-box;
-            position: relative;
+            background: #000; padding: 60px; border-radius: 30px; 
+            border: 1px solid #222; display: flex; align-items: center;
+            gap: 50px; margin-bottom: 50px; width: 100%;
+            box-sizing: border-box; position: relative;
         }
 
         .hero img { 
-            width: 160px; 
-            height: 160px; 
-            border-radius: 25px; 
+            width: 160px; height: 160px; border-radius: 25px; 
             border: 4px solid var(--v-red); 
-            box-shadow: 0 0 40px var(--v-red-glow);
-            object-fit: cover;
+            box-shadow: 0 0 40px var(--v-red-glow); object-fit: cover;
         }
 
         .hero-text h1 { font-size: 65px; margin: 0; font-family: 'Impact', sans-serif; letter-spacing: 2px; }
         .hero-text p { color: var(--v-red); font-size: 22px; font-weight: bold; margin-top: 5px; }
 
-        .stats-row { 
-            display: flex;
-            gap: 25px; 
-            margin-bottom: 50px;
-            width: 100%;
-        }
-
+        .stats-row { display: flex; gap: 25px; margin-bottom: 50px; width: 100%; }
         .stat { 
-            background: rgba(15, 15, 15, 0.8); 
-            padding: 35px; 
-            border-radius: 20px;
-            border-bottom: 5px solid var(--v-red);
-            flex: 1;
+            background: rgba(15, 15, 15, 0.8); padding: 35px; 
+            border-radius: 20px; border-bottom: 5px solid var(--v-red);
+            flex: 1; transition: 0.4s;
         }
-
+        .stat:hover { transform: scale(1.02); background: #111; }
         .stat h2 { font-size: 55px; margin: 0; font-family: 'Impact', sans-serif; }
         .stat p { color: #666; margin-top: 10px; font-weight: bold; text-transform: uppercase; }
 
         .video-box { 
-            width: 480px; 
-            background: var(--v-card); 
-            border-radius: 20px; 
-            overflow: hidden; 
-            border: 1px solid #222;
-            cursor: pointer;
+            width: 480px; background: var(--v-card); border-radius: 20px; 
+            overflow: hidden; border: 1px solid #222; cursor: pointer;
             transition: all 0.4s ease;
         }
-
-        .video-box:hover { 
-            border-color: var(--v-red); 
-            transform: scale(1.03);
-        }
-
+        .video-box:hover { border-color: var(--v-red); transform: translateY(-10px); }
         .video-box img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
-        .video-info { padding: 25px; }
 
         #video-overlay { 
-            display: none; 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.98); 
-            z-index: 2000; 
-            align-items: center; 
-            justify-content: center; 
-            backdrop-filter: blur(10px);
+            display: none; position: fixed; top: 0; left: 0; 
+            width: 100%; height: 100%; background: rgba(0,0,0,0.98); 
+            z-index: 2000; align-items: center; justify-content: center; 
+            backdrop-filter: blur(15px);
         }
-        
-        .player-wrap { 
-            width: 90%; 
-            max-width: 1200px; 
-            aspect-ratio: 16/9; 
-            border: 2px solid white; 
-            position: relative;
-        }
-
+        .player-wrap { width: 90%; max-width: 1200px; aspect-ratio: 16/9; border: 2px solid white; position: relative; }
         .btn-close { 
-            position: absolute; top: -70px; right: 0; 
-            background: white; color: black; border: none; 
-            padding: 12px 45px; font-weight: bold; cursor: pointer;
-            border-radius: 5px;
+            position: absolute; top: -70px; right: 0; background: white; 
+            color: black; border: none; padding: 12px 45px; 
+            font-weight: bold; cursor: pointer; border-radius: 5px;
         }
-
     </style>
 </head>
 <body>
 
 <header>
-    <div style="font-size: 35px; font-weight: 900; color: var(--v-red); letter-spacing: -1px;">VENOM<span style="color:white">TUBE</span></div>
-    <div style="border: 1px solid #333; padding: 8px 25px; font-weight: bold; border-radius: 50px; font-size: 12px;">ULTIMATE TITAN V18.0</div>
+    <div style="font-size: 35px; font-weight: 900; color: var(--v-red); letter-spacing: -1px;">00<span style="color:white">VENOM</span></div>
+    <div style="border: 1px solid #333; padding: 8px 25px; font-weight: bold; border-radius: 50px; font-size: 12px; color: var(--v-red);">TITAN V21.0 ACTIVE</div>
 </header>
 
 <div class="layout">
     <nav>
         <div class="menu-item">🏠 Główna</div>
-        <div class="menu-item">🎬 Moje Filmy</div>
-        <div class="menu-item">🏆 Osiągnięcia</div>
-        <div class="menu-item" id="adminBtn" onclick="openAdmin()">🛡️ Panel Admina</div>
+        <div class="menu-item">🎬 Filmy</div>
+        <div class="menu-item">🏆 Staty</div>
+        <div class="menu-item" id="adminBtn" onclick="secureLogin()">🛡️ Panel Admina</div>
     </nav>
 
     <main>
         <div class="hero">
             <img src="channels4_profile.jpg" alt="Profil">
             <div class="hero-text">
-                <h1>SkibidiZiom_rblx</h1>
+                <h1>00 Venom</h1>
                 <p>TOP 1 RIVALS POLAND 🇵🇱</p>
             </div>
         </div>
@@ -213,11 +152,9 @@
             <div class="stat"><h2>394</h2><p>Subskrybenci</p></div>
         </div>
 
-        <h2 style="margin-bottom: 30px; letter-spacing: 2px;">NAJNOWSZA PRODUKCJA</h2>
-
         <div class="video-box" onclick="playVideo('5VoQrhNo_s0')">
             <img src="https://i.ytimg.com/vi/5VoQrhNo_s0/maxresdefault.jpg">
-            <div class="video-info">
+            <div style="padding: 25px;">
                 <h3>Poradnik na latanie w Rivals 🔥</h3>
                 <p style="color:#888; margin-top: 10px; font-size: 14px;">31 wyświetleń • 2026</p>
             </div>
@@ -227,14 +164,14 @@
 
 <div id="video-overlay">
     <div class="player-wrap">
-        <button class="btn-close" onclick="closeVideo()">Zamknij Odtwarzacz</button>
-        <iframe id="video-frame" width="100%" height="100%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <button class="btn-close" onclick="closeVideo()">Zamknij</button>
+        <iframe id="video-frame" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
     </div>
 </div>
 
 <script>
     function playVideo(id) {
-        document.getElementById('video-frame').src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
+        document.getElementById('video-frame').src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
         document.getElementById('video-overlay').style.display = "flex";
     }
     function closeVideo() {
@@ -242,15 +179,22 @@
         document.getElementById('video-frame').src = "";
     }
 
-    function openAdmin() {
-        let password = prompt("Dostęp zastrzeżony. Podaj tajne hasło:");
+    let loginAttempts = 0;
+    function secureLogin() {
+        let pass = prompt("PODAJ KLUCZ DOSTĘPU:");
         
-        // TWOJE NOWE HASŁO
-        if (password === "skibidimasło") {
-            alert("DOSTĘP PRZYZNANY. Witaj Szefie!");
+        // TWOJE STARE HASŁO (ZOSTAWIONE BEZ ZMIAN)
+        if (pass === "skibidimasło") {
+            alert("DOSTĘP PRZYZNANY. Witaj 00 Venom.");
             window.location.href = "https://studio.youtube.com/";
         } else {
-            alert("BŁĘDNE HASŁO. Próba logowania zarejestrowana.");
+            loginAttempts++;
+            alert("BŁĄD! Próba: " + loginAttempts + "/3. System monitoruje Twoje IP.");
+            if(loginAttempts >= 3) {
+                alert("BLOKADA BEZPIECZEŃSTWA: 60 SEKUND.");
+                document.getElementById('adminBtn').style.display = 'none';
+                setTimeout(() => { document.getElementById('adminBtn').style.display = 'block'; loginAttempts = 0; }, 60000);
+            }
         }
     }
 </script>
