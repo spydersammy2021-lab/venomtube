@@ -3,124 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>00 VENOM | TITAN OFFICIAL</title>
+    <title>00 VENOM | TITAN ULTIMATE V37.5</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600;800&display=swap');
-
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; }
-
-        :root {
-            --v-red: #ff0000;
-            --v-black: #050505;
-            --v-glass: rgba(255, 255, 255, 0.05);
-        }
-
-        body { background-color: var(--v-black); color: #fff; font-family: 'Poppins', sans-serif; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
-
-        .space-bg { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at center, #1a0000 0%, #000 100%); }
-
-        header {
-            height: 100px; background: rgba(0, 0, 0, 0.9); border-bottom: 2px solid var(--v-red);
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 50px; backdrop-filter: blur(20px); z-index: 1000;
-        }
-
-        .wrapper { display: flex; flex: 1; overflow: hidden; }
-
-        aside { width: 300px; background: rgba(0, 0, 0, 0.8); border-right: 1px solid rgba(255,255,255,0.1); padding: 30px 15px; display: flex; flex-direction: column; gap: 10px; }
-
-        .nav-link {
-            padding: 18px 25px; border-radius: 12px; background: var(--v-glass); border: 1px solid transparent;
-            color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.3s; cursor: pointer; text-decoration: none; display: block;
-        }
-        .nav-link:hover, .nav-link.active { background: var(--v-red); color: white; transform: scale(1.02); }
-
-        main { flex: 1; padding: 40px; overflow-y: auto; }
-        .view { display: none; }
-        .view.active { display: block; animation: fadeIn 0.4s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .hero-banner {
-            background: #0a0a0a; padding: 40px; border-radius: 30px; border: 1px solid var(--v-red);
-            display: flex; align-items: center; gap: 40px; box-shadow: 0 0 30px rgba(255,0,0,0.2);
-        }
-
-        .pfp-wrap img { width: 150px; height: 150px; border-radius: 25px; border: 3px solid #fff; box-shadow: 0 0 30px var(--v-red); cursor: pointer; }
-
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
-        .vid-card { background: var(--v-glass); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; cursor: pointer; text-align: center; }
-        .vid-card:hover { border-color: var(--v-red); transform: translateY(-5px); background: rgba(255,0,0,0.1); }
-        .vid-thumb-alt { width: 100%; height: 150px; background: #111; border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #333; border: 1px dashed #444; }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600;800&family=Syncopate:wght@700&display=swap');
         
-        footer { height: 40px; background: #000; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; cursor: crosshair; }
+        
+        :root { 
+            --v-red: #ff0000; 
+            --v-red-glow: #ff4d4d; 
+            --v-black: #050505; 
+            --v-glass: rgba(255, 255, 255, 0.05); 
+            --v-border: rgba(255, 255, 255, 0.1); 
+        }
+
+        body { 
+            background-color: var(--v-black); 
+            color: #fff; 
+            font-family: 'Poppins', sans-serif; 
+            overflow: hidden; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+        }
+
+        .space-bg { 
+            position: fixed; 
+            inset: 0; 
+            z-index: -1; 
+            background: radial-gradient(circle at center, #1a0000 0%, #000 100%); 
+        }
+
+        .particle { 
+            position: absolute; 
+            background: #fff; 
+            border-radius: 50%; 
+            opacity: 0.1; 
+            animation: float 20s infinite linear; 
+        }
+
+        @keyframes float { 
+            from { transform: translateY(105vh); } 
+            to { transform: translateY(-10vh); } 
+        }
+
+        header { 
+            height: 100px; 
+            background: rgba(0, 0, 0, 0.9); 
+            border-bottom: 2px solid var(--v-red); 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 50px; 
+            backdrop-filter: blur(20px); 
+            z-index: 1000; 
+        }
+
+        .logo { 
+            font-family: 'Syncopate'; 
+            font-size: 30px; 
+            letter-spacing: 5px; 
+            background: linear-gradient(to right, #fff, var(--v-red)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+
+        .wrapper { 
+            display: flex; 
+            flex: 1; 
+            overflow: hidden; 
+        }
+
+        aside { 
+            width: 320px; 
+            background: rgba(0, 0, 0, 0.8); 
+            border-right: 1px solid var(--v-border); 
+            padding: 30px 15px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        }
+
+        .nav-link { 
+            padding: 18px 25px; 
+            border-radius: 15px; 
+            background: var(--v-glass); 
+            border: 1px solid transparent; 
+            color: #888; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            transition: 0.3s; 
+            cursor: pointer; 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+
+        .nav-link:hover, .nav-link.active { 
+            background: linear-gradient(135deg, var(--v-red) 0%, #330000 100%); 
+            color: white; 
+            border-color: var(--v-red-glow); 
+            transform: scale(1.03); 
+            box-shadow: 0 0 20px rgba(255,0,0,0.3); 
+        }
+
+        main { 
+            flex: 1; 
+            padding: 40px; 
+            overflow-y: auto; 
+            scroll-behavior: smooth; 
+        }
+
+        .view { 
+            display: none; 
+            animation: fadeIn 0.5s ease; 
+        }
+
+        .view.active { 
+            display: block; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .hero-banner { 
+            background: #0a0a0a; 
+            padding: 50px; 
+            border-radius: 35px; 
+            border: 1px solid var(--v-red); 
+            display: flex; 
+            align-items: center; 
+            gap: 40px; 
+            box-shadow: 0 0 40px rgba(255,0,0,0.2); 
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        .pfp-wrap img { 
+            width: 160px; 
+            height: 160px; 
+            border-radius: 30px; 
+            border: 3px solid #fff; 
+            box-shadow: 0 0 30px var(--v-red); 
+            transition: 0.5s; 
+            cursor: pointer; 
+        }
+
+        .pfp-wrap img:hover { transform: rotate(5deg) scale(1.1); }
+
+        .video-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 25px; 
+            margin-top: 30px; 
+        }
+
+        .vid-card { 
+            background: var(--v-glass); 
+            padding: 15px; 
+            border-radius: 20px; 
+            border: 1px solid var(--v-border); 
+            transition: 0.4s; 
+            cursor: pointer; 
+            position: relative; 
+        }
+
+        .vid-card:hover { 
+            border-color: var(--v-red); 
+            transform: translateY(-8px); 
+            background: rgba(255,0,0,0.05); 
+        }
+
+        .vid-card img { 
+            width: 100%; 
+            border-radius: 12px; 
+            margin-bottom: 12px; 
+            border: 1px solid #222; 
+        }
+
+        .vid-card h4 { 
+            font-family: 'Orbitron'; 
+            font-size: 14px; 
+            color: #fff; 
+            line-height: 1.4; 
+        }
+
+        #egg-overlay { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            background: rgba(0,0,0,0.95); 
+            z-index: 9999; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            backdrop-filter: blur(20px); 
+        }
+
+        .egg-card { 
+            background: #000; 
+            padding: 50px; 
+            border-radius: 40px; 
+            border: 2px solid var(--v-red); 
+            text-align: center; 
+            box-shadow: 0 0 100px rgba(255,0,0,0.5); 
+        }
+
+        footer { 
+            height: 50px; 
+            background: #000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 11px; 
+            color: #444; 
+            font-weight: 900; 
+            letter-spacing: 2px; 
+        }
+
+        /* Sekcja Statystyk */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            background: var(--v-glass);
+            padding: 30px;
+            border-radius: 25px;
+            border: 1px solid var(--v-border);
+            text-align: center;
+        }
+
+        .stat-box h3 { color: var(--v-red); font-family: 'Orbitron'; font-size: 12px; letter-spacing: 2px; }
+        .stat-box p { font-size: 24px; font-weight: 800; margin-top: 10px; }
+
     </style>
 </head>
 <body>
 
-    <div class="space-bg"></div>
+    <div class="space-bg" id="particles"></div>
 
     <header>
-        <h1 style="font-family: 'Orbitron'; letter-spacing: 5px;">00 VENOM</h1>
-        <div style="color: var(--v-red); font-weight: 900; border: 1px solid red; padding: 5px 15px; border-radius: 20px;">TITAN V37.5 📡</div>
+        <div class="logo">00 VENOM</div>
+        <div style="color: var(--v-red); font-family: 'Orbitron'; font-weight: 900; border: 1px solid red; padding: 8px 20px; border-radius: 30px; font-size: 12px;">TITAN PROTOCOL V37.5</div>
     </header>
 
     <div class="wrapper">
         <aside>
             <div class="nav-link active" onclick="changeTab('home', this)">🏠 PANEL GŁÓWNY</div>
             <div class="nav-link" onclick="changeTab('yt', this)">🎬 TWOJE FILMY</div>
-            <a href="https://www.twitch.tv/niedasievenom" target="_blank" class="nav-link" style="color: #9146ff;">💜 TWITCH LIVE</a>
-            <a href="https://spydersammy2021-lab.github.io/Mini-Game/" target="_blank" class="nav-link" style="color: #00ff41;">🎮 MINIGRA</a>
-            <a href="https://pl.pinterest.com/search/pins/?q=kolorowe%20tapety%20na%20telefon" target="_blank" class="nav-link" style="color: #e60023;">🖼️ TAPETY</a>
-            <div class="nav-link" style="margin-top:auto; color:red;" onclick="alert('ADMIN PASS: skibidimasło')">⚙️ ADMIN</div>
+            <a href="https://www.twitch.tv/niedasievenom" target="_blank" class="nav-link" style="color: #9146ff; border-left: 4px solid #9146ff;">💜 TWITCH LIVE</a>
+            <a href="https://spydersammy2021-lab.github.io/Mini-Game/" target="_blank" class="nav-link" style="color: #00ff41; border-left: 4px solid #00ff41;">🎮 URUCHOM GRĘ</a>
+            <a href="https://pl.pinterest.com/search/pins/?q=kolorowe%20tapety%20na%20telefon" target="_blank" class="nav-link" style="color: #e60023; border-left: 4px solid #e60023;">🖼️ TAPETY PINTEREST</a>
+            <div class="nav-link" style="margin-top:auto; color:red;" onclick="loginAdmin()">⚙️ SYSTEM ADMIN</div>
         </aside>
 
         <main>
             <section id="home" class="view active">
                 <div class="hero-banner">
-                    <div class="pfp-wrap" onclick="window.open('https://www.roblox.com/pl/users/9321595551/profile', '_blank')">
+                    <div class="pfp-wrap" onclick="openEgg()">
                         <img src="https://raw.githubusercontent.com/spydersammy2021-lab/venomtube/main/pro.png" alt="Venom">
                     </div>
                     <div>
-                        <h2 style="font-family: 'Orbitron'; font-size: 40px;">00 Venom</h2>
-                        <p style="color: red; font-weight: 900;">#1 RIVALS POLAND • 394 LEGIONÓW</p>
+                        <p style="color: red; font-weight: 900; letter-spacing: 4px; font-size: 12px; margin-bottom: 10px;">LEGION 00 VENOMA</p>
+                        <h2 style="font-family: 'Orbitron'; font-size: 55px; text-shadow: 0 0 20px var(--v-red);">Venom</h2>
+                        <p style="font-size: 18px; color: #aaa;">#1 RIVALS POLAND • <span id="subs" style="color:red; font-weight:bold;">394</span> SUBÓW</p>
                     </div>
                 </div>
-                <div style="margin-top: 30px; background: rgba(255,0,0,0.05); padding: 20px; border-radius: 20px; border-left: 5px solid red;">
-                    <h3>KOMUNIKAT SYSTEMU:</h3>
-                    <p>Wszystkie dziwne linki zostały usunięte. System jest teraz czysty i gotowy na Twój content.</p>
+
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h3>STATUS SYSTEMU</h3>
+                        <p>TITAN: AKTYWNY</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>OSTATNIA AKTUALIZACJA</h3>
+                        <p>PROTOKÓŁ WIDEO</p>
+                    </div>
                 </div>
             </section>
 
             <section id="yt" class="view">
-                <h2 style="font-family: 'Orbitron'; color: var(--v-red); margin-bottom: 20px;">🎬 MOJE TRANSMISJE</h2>
+                <h2 style="font-family: 'Orbitron'; color: var(--v-red); margin-bottom: 25px; font-size: 30px;">🎬 MOJE PRODUKCJE</h2>
                 <div class="video-grid">
-                    <div class="vid-card" onclick="window.open('https://www.youtube.com/@niedasievenom', '_blank')">
-                        <div class="vid-thumb-alt">TITAN VIDEO 01</div>
-                        <h4>Czitowanie w Rivals</h4>
-                    </div>
-                    <div class="vid-card" onclick="window.open('https://www.youtube.com/@niedasievenom', '_blank')">
-                        <div class="vid-thumb-alt">TITAN VIDEO 02</div>
+                    <div class="vid-card" onclick="window.open('https://www.youtube.com/watch?v=nsm-IiKL778', '_blank')">
+                        <img src="https://i.ytimg.com/vi/nsm-IiKL778/maxresdefault.jpg">
                         <h4>Gramy w Rivals pierwszy odcinek</h4>
                     </div>
-                    <div class="vid-card" onclick="window.open('https://www.youtube.com/@niedasievenom', '_blank')">
-                        <div class="vid-thumb-alt">TITAN VIDEO 03</div>
+                    <div class="vid-card" onclick="window.open('https://www.youtube.com/watch?v=GbunKlpuLhM', '_blank')">
+                        <img src="https://i.ytimg.com/vi/GbunKlpuLhM/maxresdefault.jpg">
+                        <h4>Czitowanie w Rivals</h4>
+                    </div>
+                    <div class="vid-card" onclick="window.open('https://www.youtube.com/watch?v=5VoQrhNo_s0', '_blank')">
+                        <img src="https://i.ytimg.com/vi/5VoQrhNo_s0/maxresdefault.jpg">
                         <h4>Pro Ten latanie</h4>
+                    </div>
+                    <div class="vid-card" onclick="window.open('https://www.youtube.com/watch?v=RGDG-7EFFBk', '_blank')">
+                        <img src="https://i.ytimg.com/vi/RGDG-7EFFBk/maxresdefault.jpg">
+                        <h4>Poradnik Na Cheaty Do Rivals</h4>
                     </div>
                 </div>
             </section>
         </main>
     </div>
 
+    <div id="egg-overlay">
+        <div class="egg-card">
+            <h2 style="font-family:'Orbitron'; color:white; font-size:35px; margin-bottom:20px;">LEGION VENOMA 🐍</h2>
+            <p style="color:#888; margin-bottom:30px;">Chcesz dołączyć do wspólnej gry?</p>
+            <button class="nav-link active" style="width:100%; justify-content:center;" onclick="window.open('https://www.roblox.com/pl/users/9321595551/profile', '_blank')">DODAJ MNIE NA ROBLOX</button>
+            <p onclick="closeEgg()" style="margin-top:25px; cursor:pointer; color:#444; font-weight:bold;">[ ZAMKNIJ DEKRYPTOR ]</p>
+        </div>
+    </div>
+
     <footer>00 VENOM TITAN SYSTEM • 2026</footer>
 
     <script>
+        // System cząsteczek tła
+        const pContainer = document.getElementById('particles');
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement('div'); 
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + 'vw'; 
+            p.style.top = Math.random() * 100 + 'vh';
+            p.style.width = p.style.height = Math.random() * 3 + 'px';
+            p.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            pContainer.appendChild(p);
+        }
+
+        // Przełączanie zakładek
         function changeTab(id, el) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             el.classList.add('active');
         }
+
+        // Funkcje nakładki (Egg)
+        function openEgg() { document.getElementById('egg-overlay').style.display = 'flex'; }
+        function closeEgg() { document.getElementById('egg-overlay').style.display = 'none'; }
+
+        // Funkcja Admin
+        function loginAdmin() { 
+            if(prompt("HASŁO SYSTEMOWE:") === "skibidimasło") {
+                window.location.href="https://studio.youtube.com"; 
+            }
+        }
+
+        // Dynamiczny licznik subów (symulacja wzrostu)
+        let s = 394; 
+        setInterval(() => { 
+            if(Math.random() > 0.9) { 
+                s++; 
+                document.getElementById('subs').innerText = s; 
+            } 
+        }, 10000);
     </script>
 </body>
 </html>
