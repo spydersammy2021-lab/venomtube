@@ -7,7 +7,7 @@
     <style>
         /* TITAN V37.5: FULL STREAMER EDITION 🐍🔥
            AUTOR: 00 VENOM & GEMINI AI
-           STATUS: ULTIMATE ONLINE
+           EASTER EGG STATUS: ACTIVE 🥚
         */
 
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap');
@@ -115,21 +115,26 @@
         @keyframes rotateBg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .hero-banner::after { content: ''; position: absolute; inset: 4px; background: #0a0a0a; border-radius: 36px; z-index: 0; }
 
-        .pfp-wrap { position: relative; z-index: 1; }
+        .pfp-wrap { position: relative; z-index: 1; cursor: pointer; transition: 0.3s; }
+        .pfp-wrap:hover { transform: scale(1.05); }
         .pfp-wrap img { width: 220px; height: 220px; border-radius: 40px; border: 4px solid #fff; box-shadow: 0 0 50px var(--v-red); object-fit: cover; }
 
         .hero-text { z-index: 1; }
         .hero-text h1 { font-family: 'Orbitron'; font-size: 70px; margin: 0; }
         .hero-text p { color: var(--v-red); font-weight: 900; letter-spacing: 5px; }
 
-        .status-box {
-            position: absolute; top: 20px; left: 20px; z-index: 10;
-            display: flex; align-items: center; gap: 12px;
-            background: rgba(0,0,0,0.7); padding: 12px 25px;
-            border-radius: 50px; border: 1px solid var(--v-glass-border);
+        /* --- EASTER EGG OVERLAY --- */
+        #egg-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(255,0,0,0.9);
+            z-index: 20000; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; animation: eggFade 0.5s ease;
         }
-        .status-dot { width: 12px; height: 12px; border-radius: 50%; background: #444; animation: blink 2s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        @keyframes eggFade { from { opacity: 0; transform: scale(1.2); } to { opacity: 1; transform: scale(1); } }
+        .egg-card { background: #000; padding: 60px; border-radius: 40px; border: 5px solid #fff; box-shadow: 0 0 100px #000; }
+        .egg-card h2 { font-family: 'Orbitron'; font-size: 50px; color: #fff; margin-bottom: 20px; }
+        .egg-card p { font-size: 20px; color: #ff0000; font-weight: 900; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; }
+        .add-btn { background: #fff; color: #000; padding: 20px 50px; border-radius: 50px; font-weight: 900; border: none; cursor: pointer; font-family: 'Orbitron'; font-size: 18px; transition: 0.3s; }
+        .add-btn:hover { background: #ff0000; color: #fff; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,255,255,0.3); }
 
         /* --- GRID --- */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
@@ -137,7 +142,6 @@
         .card:hover { transform: translateY(-15px); border-color: var(--v-red); }
         .card-img { width: 100%; height: 240px; background-size: cover; background-position: center; }
         .card-body { padding: 30px; }
-        .card-body h3 { font-family: 'Orbitron'; font-size: 22px; margin-bottom: 10px; }
 
         /* --- PLAYER --- */
         #player-void { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(50px); }
@@ -150,6 +154,19 @@
 <body oncontextmenu="return triggerLock(event)">
 
     <div class="space-bg" id="particles"></div>
+
+    <div id="egg-overlay">
+        <div class="egg-card">
+            <h2>LEGION VENOMA 🐍</h2>
+            <p>Znalazłeś ukryte przejście!</p>
+            <div style="background: #111; padding: 20px; border-radius: 15px; margin-bottom: 30px; border: 1px dashed #444;">
+                <span style="color: #666; font-size: 12px;">TWÓJ CEL:</span><br>
+                <strong style="font-size: 30px; color: #fff;">00 VENOM</strong>
+            </div>
+            <button class="add-btn" onclick="copyNick()">DODAJ DO ZNAJOMYCH</button>
+            <button onclick="closeEgg()" style="margin-top:20px; background:none; border:none; color:#444; cursor:pointer; font-weight:900;">[ WRÓĆ DO SYSTEMU ]</button>
+        </div>
+    </div>
 
     <div id="lock-screen" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:red; z-index:100000; flex-direction:column; align-items:center; justify-content:center;">
         <h1 style="font-family:'Orbitron'; font-size:100px;">BLOKADA 🐍</h1>
@@ -174,7 +191,7 @@
             <section id="home" class="view active">
                 <div class="hero-banner">
                     <div class="status-box"><div class="status-dot"></div><span style="font-size: 10px; color: #666;">STREAM: OFFLINE</span></div>
-                    <div class="pfp-wrap"><img src="https://raw.githubusercontent.com/spydersammy2021-lab/venomtube/main/pro.png" alt="Venom"></div>
+                    <div class="pfp-wrap" onclick="openEgg()"><img src="https://raw.githubusercontent.com/spydersammy2021-lab/venomtube/main/pro.png" alt="Venom"></div>
                     <div class="hero-text">
                         <p>Welcome to the empire of</p>
                         <h1>00 Venom</h1>
@@ -255,6 +272,16 @@
             document.getElementById('player-void').style.display = 'flex';
         }
         function closeVid() { document.getElementById('main-frame').src = ""; document.getElementById('player-void').style.display = 'none'; }
+        
+        function openEgg() { document.getElementById('egg-overlay').style.display = 'flex'; }
+        function closeEgg() { document.getElementById('egg-overlay').style.display = 'none'; }
+        
+        function copyNick() {
+            navigator.clipboard.writeText("00 VENOM");
+            alert("SKOPIOWANO NICK: 00 VENOM. Dodaj mnie w grze, a ja zaakceptuję! 🐍");
+            closeEgg();
+        }
+
         function closeOutside(e) { if(e.target.id === "player-void") closeVid(); }
         function triggerLock(e) { e.preventDefault(); document.getElementById('lock-screen').style.display='flex'; return false; }
         function loginAdmin() { if(prompt("HASŁO:") === "skibidimasło") window.location.href="https://studio.youtube.com"; }
