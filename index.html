@@ -7,262 +7,236 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap');
 
-        /* --- PODSTAWOWE --- */
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            -webkit-user-select: none; user-select: none;
-            -webkit-user-drag: none; cursor: crosshair;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; cursor: crosshair; }
 
         :root {
             --v-red: #ff0000;
             --v-red-glow: #ff4d4d;
             --v-twitch: #9146ff;
-            --v-game: #00ff41; /* Nowy kolor dla minigry - neonowa zieleń */
+            --v-game: #00ff41;
             --v-black: #050505;
-            --v-dark-bg: #000000;
             --v-glass: rgba(255, 255, 255, 0.05);
             --v-glass-border: rgba(255, 255, 255, 0.1);
-            --v-gradient: linear-gradient(135deg, #ff0000 0%, #330000 100%);
-            --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        body {
-            background-color: var(--v-black);
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            animation: fadeInPage 1.5s ease-out forwards;
-        }
+        body { background-color: var(--v-black); color: #fff; font-family: 'Poppins', sans-serif; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
 
-        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+        .space-bg { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at center, #1a0000 0%, #000 100%); }
+        .particle { position: absolute; background: #fff; border-radius: 50%; opacity: 0.2; animation: float 20s infinite linear; }
+        @keyframes float { from { transform: translateY(105vh) scale(0); } to { transform: translateY(-10vh) scale(1); } }
 
-        /* --- TŁO --- */
-        .space-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; background: radial-gradient(circle at center, #1a0000 0%, #000 100%);
-        }
-        .particle {
-            position: absolute; background: #fff; border-radius: 50%;
-            opacity: 0.2; animation: float 20s infinite linear;
-        }
-        @keyframes float { from { transform: translateY(100vh) scale(0); } to { transform: translateY(-10vh) scale(1); } }
-
-        /* --- NAGŁÓWEK --- */
         header {
-            height: 110px; background: rgba(0, 0, 0, 0.85);
-            border-bottom: 2px solid var(--v-red);
+            height: 110px; background: rgba(0, 0, 0, 0.85); border-bottom: 2px solid var(--v-red);
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 80px; backdrop-filter: blur(30px);
-            z-index: 1000; box-shadow: 0 5px 40px rgba(255, 0, 0, 0.3);
-            animation: slideDown 1s ease-out;
-        }
-        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
-
-        .logo-txt {
-            font-family: 'Syncopate', sans-serif; font-size: 40px; font-weight: 700;
-            letter-spacing: 8px; text-transform: uppercase;
-            background: linear-gradient(to right, #fff, var(--v-red));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px var(--v-red));
+            padding: 0 80px; backdrop-filter: blur(30px); z-index: 1000;
         }
 
-        /* --- LAYOUT --- */
+        .logo-txt { font-family: 'Syncopate'; font-size: 40px; font-weight: 700; letter-spacing: 8px; background: linear-gradient(to right, #fff, var(--v-red)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
         .wrapper { display: flex; flex: 1; overflow: hidden; }
 
-        aside {
-            width: 350px; background: rgba(5, 5, 5, 0.9);
-            border-right: 1px solid var(--v-glass-border);
-            padding: 40px 20px; display: flex; flex-direction: column; gap: 15px;
-            animation: slideLeft 1s ease-out;
-        }
-        @keyframes slideLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+        aside { width: 350px; background: rgba(5, 5, 5, 0.9); border-right: 1px solid var(--v-glass-border); padding: 40px 20px; display: flex; flex-direction: column; gap: 15px; }
 
         .nav-link {
-            padding: 22px 30px; border-radius: 18px;
-            background: var(--v-glass); border: 1px solid transparent;
-            color: #666; font-weight: 700; font-size: 14px;
-            text-transform: uppercase; letter-spacing: 2px;
-            transition: var(--transition); display: flex; align-items: center; gap: 15px;
-            cursor: pointer;
+            padding: 22px 30px; border-radius: 18px; background: var(--v-glass); border: 1px solid transparent;
+            color: #666; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.4s; cursor: pointer; display: flex; align-items: center; gap: 15px;
         }
-        .nav-link:hover, .nav-link.active {
-            background: var(--v-gradient); color: white;
-            border-color: var(--v-red-glow); transform: scale(1.05) translateX(10px);
-            box-shadow: 0 15px 35px rgba(255, 0, 0, 0.4);
-        }
+        .nav-link:hover, .nav-link.active { background: linear-gradient(135deg, #ff0000 0%, #330000 100%); color: white; border-color: var(--v-red-glow); transform: scale(1.05); }
+        .nav-game { border-left: 4px solid var(--v-game); color: var(--v-game); }
+        .nav-game:hover { background: var(--v-game) !important; color: black !important; border-color: #fff; }
 
-        /* --- STYL DLA PRZYCISKU MINIGRA --- */
-        .nav-game {
-            border-left: 4px solid var(--v-game);
-            color: var(--v-game);
-            text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
-        }
-        .nav-game:hover {
-            background: linear-gradient(135deg, #00ff41 0%, #004d13 100%) !important;
-            color: black !important;
-            border-color: #fff;
-            box-shadow: 0 15px 35px rgba(0, 255, 65, 0.4) !important;
-        }
+        main { flex: 1; padding: 60px 80px; overflow-y: auto; position: relative; }
         
-        .nav-twitch { border-left: 4px solid var(--v-twitch); color: var(--v-twitch); }
-        .nav-twitch:hover { background: var(--v-twitch) !important; color: white !important; }
-        .nav-pint { border-left: 4px solid #e60023; color: #e60023; }
-        .nav-pint:hover { background: #e60023 !important; color: white !important; }
-
-        /* --- MAIN --- */
-        main { flex: 1; padding: 60px 80px; overflow-y: auto; }
+        .view { display: none; animation: fadeIn 0.5s ease-out forwards; }
+        .view.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .hero-banner {
-            position: relative; background: #0a0a0a;
-            padding: 60px; border-radius: 40px; border: 1px solid var(--v-glass-border);
-            display: flex; align-items: center; gap: 60px; overflow: hidden;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.5); margin-bottom: 60px;
-            animation: scaleIn 0.8s ease-out 0.5s both;
+            background: #0a0a0a; padding: 60px; border-radius: 40px; border: 1px solid var(--v-glass-border);
+            display: flex; align-items: center; gap: 60px; box-shadow: 0 0 40px rgba(255,0,0,0.2);
+            animation: pulse 3s infinite;
         }
-        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes pulse { 0%, 100% { border-color: var(--v-glass-border); } 50% { border-color: var(--v-red); box-shadow: 0 0 60px rgba(255,0,0,0.4); } }
 
-        .hero-banner::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: conic-gradient(transparent, transparent, transparent, var(--v-red));
-            animation: rotateBg 6s linear infinite; z-index: 0;
-        }
-        @keyframes rotateBg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .hero-banner::after { content: ''; position: absolute; inset: 4px; background: #0a0a0a; border-radius: 36px; z-index: 0; }
-
-        .pfp-wrap { position: relative; z-index: 1; cursor: pointer; transition: 0.5s; }
         .pfp-wrap img { width: 220px; height: 220px; border-radius: 40px; border: 4px solid #fff; box-shadow: 0 0 50px var(--v-red); object-fit: cover; }
-        .pfp-wrap:hover { transform: rotate(5deg) scale(1.1); }
 
-        .hero-text { z-index: 1; }
-        .hero-text h1 { font-family: 'Orbitron'; font-size: 70px; margin: 0; text-shadow: 0 0 20px rgba(255,255,255,0.2); }
-        .hero-text p { color: var(--v-red); font-weight: 900; letter-spacing: 5px; }
-
-        /* --- STATS CARDS --- */
-        .stat-card {
-            flex:1; background:var(--v-glass); padding:40px; border-radius:30px; 
-            text-align:center; border:1px solid var(--v-glass-border);
-            transition: 0.4s;
+        /* ANALITYKA YOUTUBE STYLE */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-top: 20px; }
+        .vid-card { 
+            background: rgba(15, 15, 15, 0.8); border: 1px solid var(--v-glass-border); 
+            padding: 15px; border-radius: 20px; transition: 0.3s;
+            position: relative; overflow: hidden;
         }
-        .stat-card:hover { transform: translateY(-10px); border-color: var(--v-red); background: rgba(255,0,0,0.05); }
-
-        /* --- OVERLAYS --- */
-        #egg-overlay, #lock-screen {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95);
-            z-index: 20000; flex-direction: column; align-items: center; justify-content: center;
-            backdrop-filter: blur(20px); animation: fadeIn 0.3s ease;
+        .vid-card:hover { border-color: var(--v-red); transform: translateY(-5px); background: rgba(30, 0, 0, 0.3); }
+        
+        .vid-thumb { 
+            width: 100%; height: 180px; background: #111; border-radius: 12px; 
+            margin-bottom: 15px; overflow: hidden; border: 1px solid #333;
+            display: flex; align-items: center; justify-content: center;
         }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .vid-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        
+        .vid-info h4 { font-family: 'Poppins'; font-size: 16px; margin-bottom: 5px; color: #fff; }
+        .vid-info p { color: #888; font-size: 12px; font-weight: 700; }
 
-        .egg-card { background: #000; padding: 60px; border-radius: 40px; border: 2px solid var(--v-red); text-align: center; }
-        .egg-btn { background: var(--v-red); color: #fff; padding: 20px 50px; border-radius: 50px; font-weight: 900; border: none; cursor: pointer; font-family: 'Orbitron'; transition: 0.3s; }
-        .egg-btn:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--v-red); }
+        /* STATYSTYKI PROGRESS BARS */
+        .stat-row { background: var(--v-glass); padding: 25px; border-radius: 20px; margin-bottom: 20px; border-left: 5px solid var(--v-red); }
+        .progress-bg { width: 100%; height: 12px; background: #111; border-radius: 10px; margin-top: 10px; overflow: hidden; border: 1px solid #222; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #330000, #ff0000); box-shadow: 0 0 15px var(--v-red); }
 
-        footer { height: 50px; background: #000; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #333; font-weight: 900; letter-spacing: 3px; }
+        #egg-overlay, #lock-screen { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
+        .egg-card { background: #000; padding: 50px; border-radius: 40px; border: 2px solid var(--v-red); text-align: center; }
+
+        footer { height: 50px; background: #000; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #333; font-weight: 900; }
     </style>
 </head>
 <body oncontextmenu="return triggerLock(event)">
 
     <div class="space-bg" id="particles"></div>
 
-    <div id="egg-overlay">
-        <div class="egg-card">
-            <h2 style="font-family:'Orbitron'; color:white; font-size:40px; margin-bottom:20px;">LEGION VENOMA 🐍</h2>
-            <p style="margin-bottom: 30px; color: #888;">Profil systemu TITAN został odnaleziony.</p>
-            <button class="egg-btn" onclick="openRoblox()">DODAJ MNIE NA ROBLOX</button><br>
-            <button onclick="closeEgg()" style="margin-top:20px; background:none; border:none; color:#444; cursor:pointer; font-weight:900;">[ POWRÓT ]</button>
-        </div>
-    </div>
-
-    <div id="lock-screen">
-        <h1 style="font-family:'Orbitron'; font-size:80px; color:white; text-shadow:0 0 30px red;">BLOKADA 🐍</h1>
-        <p style="color:red; font-weight:900; margin-top:10px;">NARUSZENIE PROTOKOŁU TITAN</p>
-        <button onclick="document.getElementById('lock-screen').style.display='none'" style="margin-top:50px; padding:20px 60px; font-weight:900; border-radius:50px; cursor:pointer; border:none; background:white; transition:0.3s;">ODBLOKUJ</button>
-    </div>
-
     <header>
         <div class="logo-txt">00VENOM</div>
-        <div style="font-weight:900; color:var(--v-red); border:1px solid red; padding:10px 25px; border-radius:50px; box-shadow:0 0 20px red; animation: pulse 2s infinite;">V37.5: STREAMER 📡</div>
+        <div style="font-weight:900; color:var(--v-red); border:1px solid red; padding:10px 25px; border-radius:50px; box-shadow: 0 0 15px red;">TITAN ANALYTICS V3 📡</div>
     </header>
 
     <div class="wrapper">
         <aside>
-            <div class="nav-link active" onclick="changeTab('home')">🏠 GŁÓWNY PANEL</div>
-            <div class="nav-link" onclick="changeTab('archive')">🎬 ARCHIWUM YT</div>
-            
+            <div class="nav-link active" onclick="changeTab('home', this)">🏠 GŁÓWNY PANEL</div>
+            <div class="nav-link" onclick="changeTab('archive', this)">🎬 TWOJE FILMY</div>
             <div class="nav-link nav-game" onclick="openMiniGame()">🎮 MINIGRA</div>
-            
-            <div class="nav-link nav-twitch" onclick="openTwitch()">💜 TWITCH LIVE</div>
-            <div class="nav-link" onclick="changeTab('stats-v')">📈 STATYSTYKI</div>
-            <div class="nav-link nav-pint" onclick="openPinterest()">🖼️ TAPETY</div>
+            <div class="nav-link" onclick="openTwitch()">💜 TWITCH LIVE</div>
+            <div class="nav-link" onclick="changeTab('stats-v', this)">📈 ANALIZA KANAŁU</div>
             <div class="nav-link" style="margin-top:auto; color:red;" onclick="loginAdmin()">⚙️ ADMIN</div>
         </aside>
 
-        <main>
+        <main id="main-content">
             <section id="home" class="view active">
                 <div class="hero-banner">
                     <div class="pfp-wrap" onclick="openEgg()">
                         <img src="https://raw.githubusercontent.com/spydersammy2021-lab/venomtube/main/pro.png" alt="Venom">
                     </div>
                     <div class="hero-text">
-                        <p>Welcome to the empire of</p>
-                        <h1>00 Venom</h1>
-                        <p>#1 RIVALS POLAND ⚔️</p>
+                        <p style="color:red; font-weight:900; letter-spacing:3px;">SYSTEM STATUS: ONLINE</p>
+                        <h1 style="font-family:Orbitron; font-size:60px;">00 Venom</h1>
+                        <p>#1 RIVALS POLAND • PODSUMOWANIE ⚔️</p>
                     </div>
                 </div>
-
                 <div style="display:flex; gap:30px; margin-top:40px;">
-                    <div class="stat-card" style="animation: scaleIn 0.8s ease-out 0.7s both;">
-                        <h2 style="font-size:50px; color:red; font-family:'Orbitron';">108k+</h2>
-                        <p style="font-weight:900; color:#444;">WYŚWIETLENIA</p>
+                    <div class="vid-card" style="flex:1; text-align:center;">
+                        <h2 style="font-size:40px; color:red; font-family:Orbitron;">108,421</h2>
+                        <p style="color:#666; font-weight:900;">ŁĄCZNE WYŚWIETLENIA</p>
                     </div>
-                    <div class="stat-card" style="animation: scaleIn 0.8s ease-out 0.9s both;">
-                        <h2 id="subs" style="font-size:50px; color:red; font-family:'Orbitron';">394</h2>
-                        <p style="font-weight:900; color:#444;">LEGION SUBÓW</p>
+                    <div class="vid-card" style="flex:1; text-align:center;">
+                        <h2 id="subs" style="font-size:40px; color:red; font-family:Orbitron;">394</h2>
+                        <p style="color:#666; font-weight:900;">SUBSRYKBCJE LEGIONU</p>
                     </div>
+                </div>
+            </section>
+
+            <section id="archive" class="view">
+                <h2 style="font-family:Orbitron; margin-bottom:30px; color:red; border-bottom: 1px solid #333; padding-bottom: 10px;">🎬 OSTATNIO PRZESŁANE</h2>
+                <div class="video-grid">
+                    <div class="vid-card">
+                        <div class="vid-thumb">
+                            <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" alt="Miniatura">
+                        </div>
+                        <div class="vid-info">
+                            <h4>TRENING SNAJPERSKI #1</h4>
+                            <p>WYŚWIETLENIA: 1.2k • 2 DNI TEMU</p>
+                        </div>
+                    </div>
+                    <div class="vid-card">
+                        <div class="vid-thumb">
+                            <div style="color:#333;">[ BRAK MINIATURKI ]</div>
+                        </div>
+                        <div class="vid-info">
+                            <h4>RIVALS POLAND FINALS</h4>
+                            <p>WYŚWIETLENIA: 856 • 5 DNI TEMU</p>
+                        </div>
+                    </div>
+                    <div class="vid-card">
+                        <div class="vid-thumb">
+                            <div style="color:#333;">[ TITAN PROTOCOL ]</div>
+                        </div>
+                        <div class="vid-info">
+                            <h4>ZADYMA NA SERWERZE</h4>
+                            <p>WYŚWIETLENIA: 3.4k • 1 TYDZ. TEMU</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="stats-v" class="view">
+                <h2 style="font-family:Orbitron; margin-bottom:30px; color:red;">📈 ANALITYKA TITAN</h2>
+                
+                <div class="stat-row">
+                    <p style="font-weight:900;">CZAS OGLĄDANIA (GODZINY)</p>
+                    <h3 style="font-size:24px; color:red;">4.2k / 4.0k</h3>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 100%;"></div></div>
+                </div>
+
+                <div class="stat-row">
+                    <p style="font-weight:900;">POSTĘP SUBÓW (DO 500)</p>
+                    <h3 style="font-size:24px; color:red;">394 / 500</h3>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 78%;"></div></div>
+                </div>
+
+                <div class="stat-row">
+                    <p style="font-weight:900;">RETENCJA WIDZÓW</p>
+                    <h3 style="font-size:24px; color:red;">68% AVG</h3>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 68%;"></div></div>
                 </div>
             </section>
         </main>
     </div>
 
-    <footer>00 VENOM TITAN SYSTEM • 2026</footer>
+    <div id="egg-overlay">
+        <div class="egg-card">
+            <h2 style="font-family:Orbitron; color:white; font-size:30px;">LEGION VENOMA 🐍</h2>
+            <button class="nav-link active" style="margin-top:20px; width:100%; justify-content:center;" onclick="openRoblox()">DODAJ MNIE NA ROBLOX</button>
+            <p onclick="closeEgg()" style="margin-top:20px; cursor:pointer; color:#444; font-weight:900;">[ POWRÓT DO SYSTEMU ]</p>
+        </div>
+    </div>
+
+    <div id="lock-screen">
+        <h1 style="font-family:Orbitron; font-size:50px; color:red; text-shadow: 0 0 20px red;">PROTOKÓŁ ZABLOKOWANY</h1>
+        <button onclick="document.getElementById('lock-screen').style.display='none'" style="margin-top:30px; padding:15px 40px; border-radius:30px; border:none; cursor:pointer; font-weight:900; background:white;">ODBLOKUJ TITANA</button>
+    </div>
+
+    <footer>00 VENOM TITAN ANALYTICS • 2026</footer>
 
     <script>
-        // CZĄSTECZKI TŁA
+        // Cząsteczki tła
         const pContainer = document.getElementById('particles');
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 50; i++) {
             const p = document.createElement('div');
             p.className = 'particle';
             p.style.left = Math.random() * 100 + 'vw';
             p.style.top = Math.random() * 100 + 'vh';
             p.style.width = p.style.height = Math.random() * 3 + 'px';
-            p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            p.style.animationDuration = (Math.random() * 10 + 10) + 's';
             pContainer.appendChild(p);
         }
 
-        let count = 394;
-        setInterval(() => {
-            if(Math.random() > 0.8) {
-                count++;
-                document.getElementById('subs').innerText = count;
-            }
-        }, 5000);
-
-        function changeTab(id) {
+        // Naprawiony system zakładek
+        function changeTab(id, element) {
+            // Chowamy wszystkie sekcje
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            // Odznaczamy wszystkie linki w menu
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            if(id === 'home') document.getElementById('home').classList.add('active');
+            
+            // Pokazujemy wybraną sekcję
+            const target = document.getElementById(id);
+            if(target) {
+                target.classList.add('active');
+                element.classList.add('active');
+            }
         }
 
-        // NOWOŚĆ: FUNKCJA OTWIERAJĄCA MINIGRĘ
         function openMiniGame() { window.open("https://spydersammy2021-lab.github.io/Mini-Game/", "_blank"); }
-
         function openTwitch() { window.open("https://www.twitch.tv/niedasievenom", "_blank"); }
         function openRoblox() { window.open("https://www.roblox.com/pl/users/9321595551/profile", "_blank"); closeEgg(); }
-        function openPinterest() { window.open("https://pl.pinterest.com/search/pins/?q=kolorowe%20tapety%20na%20telefon", "_blank"); }
         function openEgg() { document.getElementById('egg-overlay').style.display = 'flex'; }
         function closeEgg() { document.getElementById('egg-overlay').style.display = 'none'; }
         function triggerLock(e) { e.preventDefault(); document.getElementById('lock-screen').style.display='flex'; return false; }
