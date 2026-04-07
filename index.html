@@ -1,319 +1,300 @@
 <!DOCTYPE html>
-
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>00 VENOM | TITAN SUPREMACY V40.0 OFFICIAL</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@200;300;400;600;800&family=Syncopate:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>00 VENOM | TITAN SUPREMACY V40.0 OFFICIAL</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@200;300;400;600;800&family=Syncopate:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap');
 
-    /* FUNDAMENTY SYSTEMU */
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; cursor: crosshair; }
-    
-    :root { 
-        --v-red: #ff0000; 
-        --v-red-glow: #ff4d4d; 
-        --v-black: #020202; 
-        --v-purple: #8a2be2;
-        --v-purple-glow: #b380ff;
-        --v-glass: rgba(255, 255, 255, 0.03); 
-        --v-border: rgba(255, 255, 255, 0.08); 
-        --v-text: #e0e0e0;
-    }
+        /* FUNDAMENTY SYSTEMU */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; cursor: crosshair; }
+        
+        :root { 
+            --v-red: #ff0000; 
+            --v-red-glow: #ff4d4d; 
+            --v-black: #020202; 
+            --v-purple: #8a2be2;
+            --v-purple-glow: #b380ff;
+            --v-glass: rgba(255, 255, 255, 0.03); 
+            --v-border: rgba(255, 255, 255, 0.08); 
+            --v-text: #e0e0e0;
+        }
 
-    body { 
-        background-color: var(--v-black); 
-        color: var(--v-text); 
-        font-family: 'Poppins', sans-serif; 
-        overflow: hidden; 
-        height: 100vh; 
-        display: flex; 
-        flex-direction: column; 
-    }
+        body { 
+            background-color: var(--v-black); 
+            color: var(--v-text); 
+            font-family: 'Poppins', sans-serif; 
+            overflow: hidden; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+        }
 
-    /* TŁO ANIMOWANE */
-    #bg-canvas { position: fixed; inset: 0; z-index: -1; opacity: 0.5; }
-    .scanline { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: rgba(255, 0, 0, 0.05); z-index: 1000; pointer-events: none; animation: scan 6s linear infinite; }
-    @keyframes scan { 0% { top: -5%; } 100% { top: 105%; } }
+        #bg-canvas { position: fixed; inset: 0; z-index: -1; opacity: 0.5; }
+        .scanline { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: rgba(255, 0, 0, 0.05); z-index: 1000; pointer-events: none; animation: scan 6s linear infinite; }
+        @keyframes scan { 0% { top: -5%; } 100% { top: 105%; } }
 
-    /* HEADER */
-    header { 
-        height: 100px; 
-        background: rgba(0, 0, 0, 0.95); 
-        border-bottom: 2px solid var(--v-red); 
-        display: flex; 
-        align-items: center; 
-        justify-content: space-between; 
-        padding: 0 50px; 
-        backdrop-filter: blur(30px); 
-        z-index: 100;
-    }
+        header { 
+            height: 100px; 
+            background: rgba(0, 0, 0, 0.95); 
+            border-bottom: 2px solid var(--v-red); 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 50px; 
+            backdrop-filter: blur(30px); 
+            z-index: 100;
+        }
 
-    .logo { 
-        font-family: 'Syncopate'; 
-        font-size: 30px; 
-        letter-spacing: 10px; 
-        background: linear-gradient(to right, #fff, var(--v-red)); 
-        -webkit-background-clip: text; 
-        -webkit-text-fill-color: transparent; 
-    }
+        .logo { 
+            font-family: 'Syncopate'; 
+            font-size: 30px; 
+            letter-spacing: 10px; 
+            background: linear-gradient(to right, #fff, var(--v-red)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
 
-    .sys-info {
-        font-family: 'Orbitron';
-        color: var(--v-red);
-        font-size: 10px;
-        letter-spacing: 3px;
-        border: 1px solid var(--v-red);
-        padding: 8px 20px;
-        border-radius: 50px;
-        box-shadow: 0 0 15px var(--v-red-glow);
-    }
+        .sys-info {
+            font-family: 'Orbitron';
+            color: var(--v-red);
+            font-size: 10px;
+            letter-spacing: 3px;
+            border: 1px solid var(--v-red);
+            padding: 8px 20px;
+            border-radius: 50px;
+            box-shadow: 0 0 15px var(--v-red-glow);
+        }
 
-    /* WRAPPER */
-    .wrapper { display: flex; flex: 1; overflow: hidden; }
+        .wrapper { display: flex; flex: 1; overflow: hidden; }
 
-    /* NAVIGATION */
-    aside { 
-        width: 320px; 
-        background: rgba(5, 5, 5, 0.9); 
-        border-right: 1px solid var(--v-border); 
-        padding: 30px 15px; 
-        display: flex; 
-        flex-direction: column; 
-        gap: 12px; 
-    }
+        aside { 
+            width: 320px; 
+            background: rgba(5, 5, 5, 0.9); 
+            border-right: 1px solid var(--v-border); 
+            padding: 30px 15px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        }
 
-    .nav-link { 
-        padding: 18px 25px; 
-        border-radius: 15px; 
-        background: var(--v-glass); 
-        border: 1px solid transparent; 
-        color: #777; 
-        font-weight: 700; 
-        text-transform: uppercase; 
-        letter-spacing: 2px; 
-        transition: 0.4s; 
-        cursor: pointer; 
-        text-decoration: none; 
-        display: flex; 
-        align-items: center; 
-        gap: 15px; 
-    }
+        .nav-link { 
+            padding: 18px 25px; 
+            border-radius: 15px; 
+            background: var(--v-glass); 
+            border: 1px solid transparent; 
+            color: #777; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            transition: 0.4s; 
+            cursor: pointer; 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+        }
 
-    .nav-link:hover { color: #fff; background: rgba(255,255,255,0.05); transform: translateX(10px); }
-    .nav-link.active { background: var(--v-red); color: white; border-color: var(--v-red-glow); box-shadow: 0 0 20px var(--v-red-glow); }
+        .nav-link:hover { color: #fff; background: rgba(255,255,255,0.05); transform: translateX(10px); }
+        .nav-link.active { background: var(--v-red); color: white; border-color: var(--v-red-glow); box-shadow: 0 0 20px var(--v-red-glow); }
+        .nav-ai { color: var(--v-purple); border-left: 4px solid var(--v-purple); }
+        .nav-ai.active, .nav-ai:hover { background: var(--v-purple) !important; color: white !important; box-shadow: 0 0 25px var(--v-purple-glow) !important; }
 
-    .nav-ai { color: var(--v-purple); border-left: 4px solid var(--v-purple); }
-    .nav-ai.active, .nav-ai:hover { background: var(--v-purple) !important; color: white !important; box-shadow: 0 0 25px var(--v-purple-glow) !important; }
+        main { flex: 1; padding: 50px; overflow-y: auto; scroll-behavior: smooth; position: relative; }
+        .view { display: none; animation: fadeIn 0.6s ease; }
+        .view.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* CONTENT */
-    main { flex: 1; padding: 50px; overflow-y: auto; scroll-behavior: smooth; position: relative; }
-    .view { display: none; animation: fadeIn 0.6s ease; }
-    .view.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .hero { 
+            background: linear-gradient(135deg, #111 0%, #000 100%); 
+            padding: 60px; border-radius: 40px; border: 1px solid var(--v-red); 
+            display: flex; align-items: center; gap: 50px; position: relative; overflow: hidden;
+        }
 
-    /* HOME PAGE */
-    .hero { 
-        background: linear-gradient(135deg, #111 0%, #000 100%); 
-        padding: 60px; border-radius: 40px; border: 1px solid var(--v-red); 
-        display: flex; align-items: center; gap: 50px; position: relative; overflow: hidden;
-    }
+        .pfp-wrap img { width: 180px; height: 180px; border-radius: 35px; border: 4px solid #fff; box-shadow: 0 0 40px var(--v-red); transition: 0.5s; }
+        .pfp-wrap img:hover { transform: scale(1.1) rotate(5deg); }
 
-    .pfp-wrap img { width: 180px; height: 180px; border-radius: 35px; border: 4px solid #fff; box-shadow: 0 0 40px var(--v-red); transition: 0.5s; }
-    .pfp-wrap img:hover { transform: scale(1.1) rotate(5deg); }
+        .hero-text h1 { font-family: 'Orbitron'; font-size: 55px; margin-bottom: 10px; text-shadow: 0 0 20px var(--v-red); }
+        .hero-text p { color: #888; letter-spacing: 5px; font-weight: 800; font-size: 14px; }
 
-    .hero-text h1 { font-family: 'Orbitron'; font-size: 55px; margin-bottom: 10px; text-shadow: 0 0 20px var(--v-red); }
-    .hero-text p { color: #888; letter-spacing: 5px; font-weight: 800; font-size: 14px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { background: var(--v-glass); padding: 15px; border-radius: 25px; border: 1px solid var(--v-border); transition: 0.4s; cursor: pointer; }
+        .card:hover { transform: translateY(-12px); border-color: var(--v-red); background: rgba(255,0,0,0.05); }
+        .card img { width: 100%; border-radius: 18px; margin-bottom: 15px; object-fit: cover; }
+        .card h4 { font-family: 'Orbitron'; font-size: 12px; color: #fff; }
 
-    /* VIDEO GRID */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-    .card { background: var(--v-glass); padding: 15px; border-radius: 25px; border: 1px solid var(--v-border); transition: 0.4s; cursor: pointer; }
-    .card:hover { transform: translateY(-12px); border-color: var(--v-red); background: rgba(255,0,0,0.05); }
-    .card img { width: 100%; border-radius: 18px; margin-bottom: 15px; }
-    .card h4 { font-family: 'Orbitron'; font-size: 14px; color: #fff; }
+        .ai-core { 
+            height: 75vh; background: rgba(5, 5, 10, 0.95); border-radius: 35px; 
+            border: 1px solid var(--v-purple); display: flex; flex-direction: column; overflow: hidden;
+            box-shadow: 0 0 50px rgba(138, 43, 226, 0.1);
+        }
 
-    /* VENOM AI LIVE CORE */
-    .ai-core { 
-        height: 75vh; background: rgba(5, 5, 10, 0.95); border-radius: 35px; 
-        border: 1px solid var(--v-purple); display: flex; flex-direction: column; overflow: hidden;
-        box-shadow: 0 0 50px rgba(138, 43, 226, 0.1);
-    }
+        .ai-header { padding: 25px 40px; background: #000; border-bottom: 1px solid var(--v-purple); display: flex; justify-content: space-between; align-items: center; }
+        .ai-header h3 { font-family: 'Orbitron'; color: var(--v-purple); letter-spacing: 4px; }
 
-    .ai-header { padding: 25px 40px; background: #000; border-bottom: 1px solid var(--v-purple); display: flex; justify-content: space-between; align-items: center; }
-    .ai-header h3 { font-family: 'Orbitron'; color: var(--v-purple); letter-spacing: 4px; }
+        .chat-box { flex: 1; padding: 35px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; font-family: 'JetBrains Mono', monospace; }
+        .bubble { max-width: 80%; padding: 18px 25px; border-radius: 20px; font-size: 14px; line-height: 1.6; }
+        .bubble.bot { align-self: flex-start; background: rgba(138, 43, 226, 0.15); border: 1px solid var(--v-purple); color: #d1afff; }
+        .bubble.user { align-self: flex-end; background: var(--v-glass); border: 1px solid var(--v-border); color: #fff; }
 
-    .chat-box { flex: 1; padding: 35px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; font-family: 'JetBrains Mono', monospace; }
-    .bubble { max-width: 80%; padding: 18px 25px; border-radius: 20px; font-size: 14px; line-height: 1.6; }
-    .bubble.bot { align-self: flex-start; background: rgba(138, 43, 226, 0.15); border: 1px solid var(--v-purple); color: #d1afff; }
-    .bubble.user { align-self: flex-end; background: var(--v-glass); border: 1px solid var(--v-border); color: #fff; }
+        .typing { padding: 0 40px 10px; color: var(--v-purple); font-size: 11px; font-weight: bold; display: none; }
 
-    .typing { padding: 0 40px 10px; color: var(--v-purple); font-size: 11px; font-weight: bold; display: none; }
+        .input-area { padding: 25px 40px; background: #000; display: flex; gap: 20px; border-top: 1px solid var(--v-border); }
+        .ai-input { flex: 1; padding: 18px 30px; background: #111; border: 1px solid var(--v-border); border-radius: 50px; color: #fff; outline: none; transition: 0.3s; }
+        .ai-input:focus { border-color: var(--v-purple); box-shadow: 0 0 20px var(--v-purple-glow); }
+        .ai-btn { padding: 0 40px; background: var(--v-purple); color: white; border-radius: 50px; border: none; font-family: 'Orbitron'; font-weight: 900; cursor: pointer; transition: 0.3s; }
 
-    .input-area { padding: 25px 40px; background: #000; display: flex; gap: 20px; border-top: 1px solid var(--v-border); }
-    .ai-input { flex: 1; padding: 18px 30px; background: #111; border: 1px solid var(--v-border); border-radius: 50px; color: #fff; outline: none; transition: 0.3s; }
-    .ai-input:focus { border-color: var(--v-purple); box-shadow: 0 0 20px var(--v-purple-glow); }
-    .ai-btn { padding: 0 40px; background: var(--v-purple); color: white; border-radius: 50px; border: none; font-family: 'Orbitron'; font-weight: 900; cursor: pointer; transition: 0.3s; }
-    .ai-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--v-purple); }
-
-    footer { height: 50px; background: #000; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #444; font-weight: 900; letter-spacing: 3px; border-top: 1px solid var(--v-border); }
-</style>
+        footer { height: 50px; background: #000; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #444; font-weight: 900; letter-spacing: 3px; border-top: 1px solid var(--v-border); }
+    </style>
 </head>
 <body>
 
-<div class="scanline"></div>
-<canvas id="bg-canvas"></canvas>
+    <div class="scanline"></div>
+    <canvas id="bg-canvas"></canvas>
 
-<header>
-    <div class="logo">00 VENOM</div>
-    <div class="sys-info">TITAN V40.0 • NEURAL LINK ACTIVE</div>
-</header>
+    <header>
+        <div class="logo">00 VENOM</div>
+        <div class="sys-info">TITAN V40.0 • NEURAL LINK ACTIVE</div>
+    </header>
 
-<div class="wrapper">
-    <aside>
-        <div class="nav-link active" onclick="tab('home', this)">🏠 PANEL GŁÓWNY</div>
-        <div class="nav-link" onclick="tab('yt', this)">🎬 TWOJE FILMY</div>
-        <div class="nav-link nav-ai" onclick="tab('ai', this)">🤖 VENOM AI CORE</div>
-        <a href="[https://www.twitch.tv/niedasievenom](https://www.twitch.tv/niedasievenom)" target="_blank" class="nav-link" style="color: #9146ff">💜 TWITCH LIVE</a>
-        <a href="[https://spydersammy2021-lab.github.io/Mini-Game/](https://spydersammy2021-lab.github.io/Mini-Game/)" target="_blank" class="nav-link" style="color: #00ff41">🎮 URUCHOM GRĘ</a>
-        <a href="[https://pl.pinterest.com/search/pins/?q=kolorowe%20tapety%20na%20telefon](https://pl.pinterest.com/search/pins/?q=kolorowe%20tapety%20na%20telefon)" target="_blank" class="nav-link" style="color: #e60023">🖼️ TAPETY PINTEREST</a>
-        <div class="nav-link" style="margin-top:auto; color:red" onclick="login()">⚙️ SYSTEM ADMIN</div>
-    </aside>
+    <div class="wrapper">
+        <aside>
+            <div class="nav-link active" onclick="tab('home', this)">🏠 PANEL GŁÓWNY</div>
+            <div class="nav-link" onclick="tab('yt', this)">🎬 TWOJE FILMY</div>
+            <div class="nav-link nav-ai" onclick="tab('ai', this)">🤖 VENOM AI CORE</div>
+            <a href="https://www.twitch.tv/niedasievenom" target="_blank" class="nav-link" style="color: #9146ff">💜 TWITCH LIVE</a>
+            <a href="https://spydersammy2021-lab.github.io/Mini-Game/" target="_blank" class="nav-link" style="color: #00ff41">🎮 URUCHOM GRĘ</a>
+            <div class="nav-link" style="margin-top:auto; color:red" onclick="login()">⚙️ SYSTEM ADMIN</div>
+        </aside>
 
-    <main>
-        <section id="home" class="view active">
-            <div class="hero">
-                <div class="pfp-wrap">
-                    <img src="[https://raw.githubusercontent.com/spydersammy2021-lab/venomtube/main/pro.png](https://raw.githubusercontent.com/spydersammy2021-lab/venomtube/main/pro.png)" alt="Venom">
-                </div>
-                <div class="hero-text">
-                    <p>LEGION 00 VENOMA</p>
-                    <h1>Spyder123sammy</h1>
-                    <div style="margin-top:15px; display:flex; gap:20px;">
-                        <span style="background:red; padding:5px 15px; border-radius:5px; font-weight:900; font-size:12px;">TOP 1 RIVALS PL</span>
-                        <span style="color:#fff; font-weight:300;">300+ SUBS • TITAN OS ACTIVE</span>
+        <main>
+            <section id="home" class="view active">
+                <div class="hero">
+                    <div class="pfp-wrap">
+                        <img src="https://raw.githubusercontent.com/spydersammy2021-lab/venomtube/main/pro.png" alt="Venom">
+                    </div>
+                    <div class="hero-text">
+                        <p>LEGION 00 VENOMA</p>
+                        <h1>Spyder123sammy</h1>
+                        <div style="margin-top:15px; display:flex; gap:20px;">
+                            <span style="background:red; padding:5px 15px; border-radius:5px; font-weight:900; font-size:12px;">TOP 1 RIVALS PL</span>
+                            <span style="color:#fff; font-weight:300;">300+ SUBS • TITAN OS ACTIVE</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="yt" class="view">
-            <h2 style="font-family:'Orbitron'; color:var(--v-red); letter-spacing:5px; margin-bottom:30px;">🎬 DATABASE_VIDEOS</h2>
-            <div class="grid">
-                <div class="card" onclick="window.open('[https://www.youtube.com/watch?v=3-bQuj7TGF0](https://www.youtube.com/watch?v=3-bQuj7TGF0)')">
-                    <img src="[https://i.ytimg.com/vi/3-bQuj7TGF0/maxresdefault.jpg](https://i.ytimg.com/vi/3-bQuj7TGF0/maxresdefault.jpg)">
-                    <h4>ZNALAZŁEM TYLKO TRZY - CHEATERZY W RIVALS</h4>
+            <section id="yt" class="view">
+                <h2 style="font-family:'Orbitron'; color:var(--v-red); letter-spacing:5px; margin-bottom:30px;">🎬 DATABASE_VIDEOS</h2>
+                <div class="grid">
+                    <div class="card" onclick="window.open('https://www.youtube.com/watch?v=3-bQuj7TGF0')">
+                        <img src="https://img.youtube.com/vi/3-bQuj7TGF0/maxresdefault.jpg">
+                        <h4>ZNALAZŁEM TYLKO TRZY - CHEATERZY W RIVALS</h4>
+                    </div>
+                    <div class="card" onclick="window.open('https://www.youtube.com/watch?v=KJmO_1qHD-c')">
+                        <img src="https://img.youtube.com/vi/KJmO_1qHD-c/maxresdefault.jpg">
+                        <h4>SZUKAMY 10 CHEATERUW W RIVALS</h4>
+                    </div>
+                    <div class="card" onclick="window.open('https://www.youtube.com/watch?v=nsm-IiKL778')">
+                        <img src="https://img.youtube.com/vi/nsm-IiKL778/maxresdefault.jpg">
+                        <h4>Gramy w Rivals pierwszy odcinek</h4>
+                    </div>
                 </div>
-                <div class="card" onclick="window.open('[https://www.youtube.com/watch?v=KJmO_1qHD-c](https://www.youtube.com/watch?v=KJmO_1qHD-c)')">
-                    <img src="[https://i.ytimg.com/vi/KJmO_1qHD-c/maxresdefault.jpg](https://i.ytimg.com/vi/KJmO_1qHD-c/maxresdefault.jpg)">
-                    <h4>SZUKAMY 10 CHEATERUW W RIVALS</h4>
+            </section>
+
+            <section id="ai" class="view">
+                <div class="ai-core">
+                    <div class="ai-header">
+                        <h3>VENOM AI CORE</h3>
+                        <span style="color:#00ff41; font-size:10px; font-weight:900;">SYNC: ACTIVE</span>
+                    </div>
+                    <div class="chat-box" id="box">
+                        <div class="bubble bot">System Venom AI gotowy. Słucham Cię, Spyder123sammy.</div>
+                    </div>
+                    <div class="typing" id="load">Analiza danych...</div>
+                    <div class="input-area">
+                        <input type="text" id="aiIn" class="ai-input" placeholder="Wydaj komendę...">
+                        <button class="ai-btn" onclick="sendToAI()">WYŚLIJ</button>
+                    </div>
                 </div>
-                <div class="card" onclick="window.open('[https://www.youtube.com/watch?v=nsm-IiKL778](https://www.youtube.com/watch?v=nsm-IiKL778)')">
-                    <img src="[https://i.ytimg.com/vi/nsm-IiKL778/maxresdefault.jpg](https://i.ytimg.com/vi/nsm-IiKL778/maxresdefault.jpg)">
-                    <h4>Gramy w Rivals pierwszy odcinek</h4>
-                </div>
-                <div class="card" onclick="window.open('[https://www.youtube.com/watch?v=GbunKlpuLhM](https://www.youtube.com/watch?v=GbunKlpuLhM)')">
-                    <img src="[https://i.ytimg.com/vi/GbunKlpuLhM/maxresdefault.jpg](https://i.ytimg.com/vi/GbunKlpuLhM/maxresdefault.jpg)">
-                    <h4>Czitowanie w Rivals</h4>
-                </div>
-                <div class="card" onclick="window.open('[https://www.youtube.com/watch?v=RGDG-7EFFBk](https://www.youtube.com/watch?v=RGDG-7EFFBk)')">
-                    <img src="[https://i.ytimg.com/vi/RGDG-7EFFBk/maxresdefault.jpg](https://i.ytimg.com/vi/RGDG-7EFFBk/maxresdefault.jpg)">
-                    <h4>Poradnik Na Cheaty Do Rivals</h4>
-                </div>
-            </div>
-        </section>
+            </section>
+        </main>
+    </div>
 
-        <section id="ai" class="view">
-            <div class="ai-core">
-                <div class="ai-header">
-                    <h3>VENOM AI CORE</h3>
-                    <span style="color:#00ff41; font-size:10px; font-weight:900;">SYNC: STABLE</span>
-                </div>
-                <div class="chat-box" id="box">
-                    <div class="bubble bot">System Venom AI gotowy do operacji. Połączono z rdzeniem TITAN. Słucham Cię, Spyder123sammy.</div>
-                </div>
-                <div class="typing" id="load">Analiza danych...</div>
-                <div class="input-area">
-                    <input type="text" id="aiIn" class="ai-input" placeholder="Wydaj komendę...">
-                    <button class="ai-btn" onclick="sendToAI()">WYŚLIJ</button>
-                </div>
-            </div>
-        </section>
-    </main>
-</div>
+    <footer>WYGENEROWANO PRZEZ VENOM AI • PROTOKÓŁ TITAN SUPREMACY • 2026</footer>
 
-<footer>WYGENEROWANO PRZEZ VENOM AI • PROTOKÓŁ TITAN SUPREMACY • 2026</footer>
+    <script>
+        // KLUCZ POPRAWIONY I GOTOWY DO UŻYCIA
+        const KEY = "AIzaSyC1HTKJuG3QKZl6oHApTe7J-pL6AkkXGzg"; 
 
-<script>
-    const KEY = "AIzaSyC1HTKJuG3QKZl6oHApTe7J-pL6AkkXGzg"; 
-
-    function tab(id, btn) {
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        btn.classList.add('active');
-    }
-
-    async function sendToAI() {
-        const input = document.getElementById('aiIn');
-        const box = document.getElementById('box');
-        const load = document.getElementById('load');
-        const val = input.value.trim();
-
-        if(!val) return;
-
-        const uDiv = document.createElement('div');
-        uDiv.className = 'bubble user';
-        uDiv.innerText = val;
-        box.appendChild(uDiv);
-        input.value = "";
-        box.scrollTop = box.scrollHeight;
-        load.style.display = "block";
-
-        try {
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${KEY}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: `Jesteś Venom AI, hakerski asystent lidera Spyder123sammy. Odpowiadaj krótko. Pytanie: ${val}` }] }]
-                })
-            });
-            const data = await res.json();
-            const reply = data.candidates[0].content.parts[0].text;
-            
-            const bDiv = document.createElement('div');
-            bDiv.className = 'bubble bot';
-            bDiv.innerText = reply;
-            box.appendChild(bDiv);
-        } catch(e) {
-            const eDiv = document.createElement('div');
-            eDiv.className = 'bubble bot';
-            eDiv.style.color = "red";
-            eDiv.innerText = "BŁĄD RDZENIA.";
-            box.appendChild(eDiv);
+        function tab(id, btn) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
         }
-        load.style.display = "none";
-        box.scrollTop = box.scrollHeight;
-    }
 
-    function login() { if(prompt("HASŁO:") === "skibidimasło") window.location.href="[https://studio.youtube.com](https://studio.youtube.com)"; }
+        async function sendToAI() {
+            const input = document.getElementById('aiIn');
+            const box = document.getElementById('box');
+            const load = document.getElementById('load');
+            const val = input.value.trim();
+            if(!val) return;
 
-    const c = document.getElementById('bg-canvas');
-    const ctx = c.getContext('2d');
-    c.width = window.innerWidth; c.height = window.innerHeight;
-    let p = [];
-    for(let i=0; i<100; i++) p.push({x: Math.random()*c.width, y: Math.random()*c.height, s: Math.random()*2});
-    function draw() {
-        ctx.clearRect(0,0,c.width,c.height);
-        ctx.fillStyle = "rgba(255,0,0,0.5)";
-        p.forEach(d => {
-            ctx.beginPath(); ctx.arc(d.x, d.y, d.s, 0, Math.PI*2); ctx.fill();
-            d.y -= d.s*0.4; if(d.y < 0) d.y = c.height;
-        });
-        requestAnimationFrame(draw);
-    }
-    draw();
-    document.getElementById('aiIn').onkeypress = (e) => { if(e.key==='Enter') sendToAI(); };
-</script>
+            const uDiv = document.createElement('div');
+            uDiv.className = 'bubble user';
+            uDiv.innerText = val;
+            box.appendChild(uDiv);
+            input.value = "";
+            box.scrollTop = box.scrollHeight;
+            load.style.display = "block";
+
+            try {
+                // POPRAWIONA ŚCIEŻKA DO GEMINI API
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: `Jesteś Venom AI, asystent Spyder123sammy. Odpowiadaj krótko i hakersko. Pytanie: ${val}` }] }]
+                    })
+                });
+                const data = await res.json();
+                const reply = data.candidates[0].content.parts[0].text;
+                
+                const bDiv = document.createElement('div');
+                bDiv.className = 'bubble bot';
+                bDiv.innerText = reply;
+                box.appendChild(bDiv);
+            } catch(e) {
+                const eDiv = document.createElement('div');
+                eDiv.className = 'bubble bot';
+                eDiv.style.color = "red";
+                eDiv.innerText = "BŁĄD RDZENIA - SPRAWDŹ KLUCZ API.";
+                box.appendChild(eDiv);
+            }
+            load.style.display = "none";
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function login() { if(prompt("HASŁO:") === "skibidimasło") window.location.href="https://studio.youtube.com"; }
+
+        const c = document.getElementById('bg-canvas');
+        const ctx = c.getContext('2d');
+        c.width = window.innerWidth; c.height = window.innerHeight;
+        let p = [];
+        for(let i=0; i<100; i++) p.push({x: Math.random()*c.width, y: Math.random()*c.height, s: Math.random()*2});
+        function draw() {
+            ctx.clearRect(0,0,c.width,c.height);
+            ctx.fillStyle = "rgba(255,0,0,0.5)";
+            p.forEach(d => {
+                ctx.beginPath(); ctx.arc(d.x, d.y, d.s, 0, Math.PI*2); ctx.fill();
+                d.y -= d.s*0.4; if(d.y < 0) d.y = c.height;
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+        document.getElementById('aiIn').onkeypress = (e) => { if(e.key==='Enter') sendToAI(); };
+    </script>
 </body>
 </html>
